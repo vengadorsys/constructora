@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Constructora en Torreón — Casas a medida, remodelaciones y ampliaciones | Cimbra Norte</title>
+<meta name="description" content="Construimos tu casa en Torreón, Gómez Palacio y Lerdo con precio cerrado por contrato, fecha de entrega y pagos por avance. Remodelaciones, ampliaciones, locales y oficinas. Cotiza tu obra en línea.">
+<meta name="theme-color" content="#14222d">
+<meta property="og:title" content="Cimbra Norte — Constructora en Torreón">
+<meta property="og:description" content="Precio cerrado, fecha de entrega y pagos por avance. Cotiza tu obra en 2 minutos.">
+<meta property="og:image" content="assets/img/hero-fachada.webp">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="assets/img/hero-fachada.webp" fetchpriority="high">
+<link rel="stylesheet" href="lib/leaflet.css">
+<link rel="stylesheet" href="styles.css?v=20261017">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Cimbra Norte Construcciones (demo)",
+  "description": "Constructora residencial en Torreón: casas a medida, remodelaciones, ampliaciones y obra comercial.",
+  "areaServed": ["Torreón", "Gómez Palacio", "Lerdo", "Matamoros"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Torreón", "addressRegion": "Coahuila", "addressCountry": "MX" },
+  "geo": { "@type": "GeoCoordinates", "latitude": 25.5428, "longitude": -103.4068 },
+  "openingHours": ["Mo-Fr 08:00-18:00", "Sa 09:00-14:00"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Cuánto cuesta construir por m² en Torreón?","acceptedAnswer":{"@type":"Answer","text":"Como referencia orientativa, entre 8,500 y 28,000 MXN por m² sin IVA, según el nivel de acabado. El presupuesto real se entrega tras la visita técnica."}},
+    {"@type":"Question","name":"¿Cobran la visita técnica?","acceptedAnswer":{"@type":"Answer","text":"La primera visita técnica es sin costo dentro de la Comarca Lagunera."}},
+    {"@type":"Question","name":"¿Puedo construir por etapas?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podemos contratar solo obra negra y dejar acabados para una segunda etapa, con presupuesto por partidas."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+
+<!-- ============ BARRA SUPERIOR ============ -->
+<div class="topbar">
+  <div class="wrap topbar-in">
+    <span class="mono">Torreón · Gómez Palacio · Lerdo</span>
+    <span class="topbar-sep" aria-hidden="true"></span>
+    <span class="mono hide-sm">Lun–Vie 8:00–18:00 · Sáb 9:00–14:00</span>
+    <a class="mono topbar-tel" href="tel:+528710000000">871 000 0000</a>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" data-nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Cimbra Norte, inicio">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M2 26h36M14 26V2M26 38V26" stroke="currentColor" stroke-width="2.5"/><rect x="26" y="8" width="6" height="12" fill="var(--accent)"/></svg>
+      <span class="logo-text"><b>CIMBRA</b><i>NORTE</i></span>
+    </a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#obras">Obras</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#cotizador">Cotizador IA</a>
+      <a href="#financiamiento">Financiamiento</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="btn btn-accent btn-sm nav-cta magnetic" href="#cotizador">Cotiza tu obra</a>
+    <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false" data-burger><span></span><span></span></button>
+  </div>
+  <div class="nav-drawer" data-drawer hidden>
+    <a href="#servicios">Servicios</a>
+    <a href="#obras">Obras</a>
+    <a href="#proceso">Cómo trabajamos</a>
+    <a href="#cotizador">Cotizador IA</a>
+    <a href="#financiamiento">Financiamiento</a>
+    <a href="#faq">Preguntas frecuentes</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-media" data-parallax>
+    <img src="assets/img/hero-fachada.webp" alt="Fachada de una casa moderna de dos niveles en concreto y acero al atardecer" width="1920" height="1080" fetchpriority="high" loading="eager">
+    <span class="img-tag">Imagen ilustrativa</span>
+  </div>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <svg class="hero-blueprint" viewBox="0 0 600 600" aria-hidden="true">
+    <g class="bp-lines" fill="none" stroke="currentColor" stroke-width="1">
+      <path d="M60 520 H540 V220 L300 80 L60 220 Z"/>
+      <path d="M60 340 H540"/>
+      <path d="M220 520 V340 M380 340 V220"/>
+      <path d="M260 520 V430 H330 V520"/>
+      <path d="M410 300 H500 V250 H410 Z"/>
+      <path d="M90 300 H190 V250 H90 Z"/>
+      <path d="M40 560 H560" stroke-dasharray="4 6"/>
+      <path d="M40 545 V575 M560 545 V575"/>
+    </g>
+    <text x="300" y="590" text-anchor="middle" class="bp-txt">12.00 m</text>
+  </svg>
+
+  <div class="wrap hero-in">
+    <p class="eyebrow"><span class="dot"></span> Constructora residencial en Torreón, Coahuila</p>
+    <h1 class="hero-title">
+      <span class="line"><span>Tu casa, con</span></span>
+      <span class="line"><span><em>precio cerrado</em></span></span>
+      <span class="line"><span>y fecha de entrega.</span></span>
+    </h1>
+    <p class="hero-sub">Construimos, remodelamos y ampliamos casas en la Comarca Lagunera con contrato a precio cerrado, calendario firmado y <strong>pagos solo por avance de obra</strong>. Sin sorpresas a mitad de camino.</p>
+    <ul class="hero-certs" aria-label="Lo que firmamos en contrato">
+      <li><span class="cert-ico" aria-hidden="true">01</span> Precio cerrado por contrato</li>
+      <li><span class="cert-ico" aria-hidden="true">02</span> Fecha de entrega pactada</li>
+      <li><span class="cert-ico" aria-hidden="true">03</span> Pagos por avance verificado</li>
+    </ul>
+    <div class="hero-ctas">
+      <a class="btn btn-accent btn-lg magnetic" href="#cotizador">
+        Cotiza tu obra
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <a class="btn btn-wa btn-lg magnetic" data-wa="Hola, quiero información para construir/remodelar con Cimbra Norte." href="https://wa.me/528710000000" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="wrap stats-in">
+      <div class="stat"><b data-count="17">17</b><span>años construyendo en La Laguna</span></div>
+      <div class="stat"><b data-count="230" data-suffix="+">230+</b><span>obras entregadas</span></div>
+      <div class="stat"><b data-count="41500" data-format="miles">41,500</b><span>m² construidos</span></div>
+      <div class="stat"><b data-count="96" data-suffix="%">96%</b><span>entregas en la fecha pactada</span></div>
+      <p class="stats-note mono">* Cifras de ejemplo</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CINTA ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Casa habitación</span><i>◆</i><span>Segundo piso</span><i>◆</i><span>Remodelación de cocina</span><i>◆</i><span>Licencia de construcción</span><i>◆</i><span>Locales y oficinas</span><i>◆</i><span>Obra negra · obra gris · acabados</span><i>◆</i><span>Infonavit · Fovissste · Bancario</span><i>◆</i>
+    <span>Casa habitación</span><i>◆</i><span>Segundo piso</span><i>◆</i><span>Remodelación de cocina</span><i>◆</i><span>Licencia de construcción</span><i>◆</i><span>Locales y oficinas</span><i>◆</i><span>Obra negra · obra gris · acabados</span><i>◆</i><span>Infonavit · Fovissste · Bancario</span><i>◆</i>
+  </div>
+</div>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="section services" id="servicios">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker"><span>01</span> Servicios</p>
+      <h2 class="sec-title reveal">Un solo responsable, <em>de la licencia a la llave.</em></h2>
+      <p class="sec-lead reveal">Diseñamos, tramitamos y construimos. Tú tratas con una persona; nosotros coordinamos arquitectos, ingenieros, cuadrillas y proveedores.</p>
+    </header>
+
+    <div class="svc-grid">
+      <article class="svc-card reveal" data-tilt>
+        <div class="svc-img"><img src="assets/img/servicio-casa.webp" alt="Casa habitación en construcción con estructura de concreto" width="1200" height="900" loading="lazy" decoding="async"><span class="img-tag">Imagen ilustrativa</span></div>
+        <div class="svc-body">
+          <span class="svc-num mono">S/01</span>
+          <h3>Casa habitación a medida</h3>
+          <p>En tu terreno, desde el proyecto arquitectónico hasta la entrega con planos finales. De 1 a 3 niveles.</p>
+          <ul class="svc-list"><li>Proyecto arquitectónico y ejecutivo</li><li>Obra negra, gris y acabados</li><li>Instalaciones y cálculo estructural</li></ul>
+        </div>
+      </article>
+      <article class="svc-card reveal" data-tilt>
+        <div class="svc-img"><img src="assets/img/servicio-remodelacion.webp" alt="Ampliación de segundo piso sobre una casa existente" width="1200" height="900" loading="lazy" decoding="async"><span class="img-tag">Imagen ilustrativa</span></div>
+        <div class="svc-body">
+          <span class="svc-num mono">S/02</span>
+          <h3>Remodelación y ampliación</h3>
+          <p>Segundo piso, recámara extra, cocina, baños, fachada o cochera. Trabajamos con tu familia viviendo en casa.</p>
+          <ul class="svc-list"><li>Revisión estructural antes de ampliar</li><li>Obra limpia y por zonas</li><li>Cronograma por semanas</li></ul>
+        </div>
+      </article>
+      <article class="svc-card reveal" data-tilt>
+        <div class="svc-img"><img src="assets/img/servicio-comercial.webp" alt="Local comercial moderno con fachada de cristal" width="1200" height="900" loading="lazy" decoding="async"><span class="img-tag">Imagen ilustrativa</span></div>
+        <div class="svc-body">
+          <span class="svc-num mono">S/03</span>
+          <h3>Obra comercial</h3>
+          <p>Locales, consultorios y oficinas: construcción nueva o adecuación de espacios con tiempos de apertura definidos.</p>
+          <ul class="svc-list"><li>Locales en plaza o a pie de calle</li><li>Oficinas y consultorios</li><li>Factura y calendario por etapas</li></ul>
+        </div>
+      </article>
+      <article class="svc-card reveal" data-tilt>
+        <div class="svc-img"><img src="assets/img/servicio-permisos.webp" alt="Planos arquitectónicos, casco de obra y documentos sobre una mesa" width="1200" height="900" loading="lazy" decoding="async"><span class="img-tag">Imagen ilustrativa</span></div>
+        <div class="svc-body">
+          <span class="svc-num mono">S/04</span>
+          <h3>Gestoría de permisos</h3>
+          <p>Licencia de construcción, alineamiento y número oficial, uso de suelo y terminación de obra ante el municipio.</p>
+          <ul class="svc-list"><li>Planos firmados por DRO / perito</li><li>Integración del expediente</li><li>Seguimiento hasta la licencia</li></ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTAFOLIO ============ -->
+<section class="section works" id="obras">
+  <div class="wrap">
+    <header class="sec-head sec-head-row">
+      <div>
+        <p class="kicker"><span>02</span> Obras</p>
+        <h2 class="sec-title reveal">Obras que se <em>entregaron a tiempo.</em></h2>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar obras">
+        <button class="filter is-on" aria-pressed="true" data-filter="todas">Todas</button>
+        <button class="filter" aria-pressed="false" data-filter="residencial">Residencial</button>
+        <button class="filter" aria-pressed="false" data-filter="remodelacion">Remodelación</button>
+        <button class="filter" aria-pressed="false" data-filter="comercial">Comercial</button>
+      </div>
+    </header>
+
+    <div class="works-grid" data-works>
+      <article class="work-card work-lg" data-categoria="residencial">
+        <button class="work-open" data-ficha="casa-los-viñedos" aria-label="Ver ficha: Casa Los Viñedos">
+          <div class="work-img"><img src="assets/img/proy-res-1.webp" alt="Casa de dos niveles con fachada de concreto aparente y madera" width="1600" height="1200" loading="lazy" decoding="async"></div>
+          <div class="work-meta">
+            <span class="work-cat mono">Residencial</span>
+            <h3>Casa Los Viñedos</h3>
+            <dl><div><dt>m²</dt><dd>286</dd></div><div><dt>Ciudad</dt><dd>Torreón</dd></div><div><dt>Año</dt><dd>2025</dd></div></dl>
+            <span class="work-cta">Ver proyecto <i aria-hidden="true">→</i></span>
+          </div>
+          <span class="img-tag">Proyecto de ejemplo · Imagen ilustrativa</span>
+        </button>
+      </article>
+      <article class="work-card" data-categoria="remodelacion">
+        <button class="work-open" data-ficha="ampliacion-campestre" aria-label="Ver ficha: Ampliación Campestre La Rosita">
+          <div class="work-img"><img src="assets/img/proy-rem-1.webp" alt="Casa con ampliación de segundo piso y terraza" width="1600" height="1200" loading="lazy" decoding="async"></div>
+          <div class="work-meta">
+            <span class="work-cat mono">Remodelación</span>
+            <h3>Ampliación Campestre La Rosita</h3>
+            <dl><div><dt>m²</dt><dd>94</dd></div><div><dt>Ciudad</dt><dd>Torreón</dd></div><div><dt>Año</dt><dd>2024</dd></div></dl>
+            <span class="work-cta">Ver proyecto <i aria-hidden="true">→</i></span>
+          </div>
+          <span class="img-tag">Proyecto de ejemplo · Imagen ilustrativa</span>
+        </button>
+      </article>
+      <article class="work-card" data-categoria="comercial">
+        <button class="work-open" data-ficha="plaza-independencia" aria-label="Ver ficha: Locales Plaza Independencia">
+          <div class="work-img"><img src="assets/img/proy-com-1.webp" alt="Plaza comercial pequeña con locales y fachada de cristal" width="1600" height="1200" loading="lazy" decoding="async"></div>
+          <div class="work-meta">
+            <span class="work-cat mono">Comercial</span>
+            <h3>Locales Plaza Independencia</h3>
+            <dl><div><dt>m²</dt><dd>420</dd></div><div><dt>Ciudad</dt><dd>Gómez Palacio</dd></div><div><dt>Año</dt><dd>2024</dd></div></dl>
+            <span class="work-cta">Ver proyecto <i aria-hidden="true">→</i></span>
+          </div>
+          <span class="img-tag">Proyecto de ejemplo · Imagen ilustrativa</span>
+        </button>
+      </article>
+    </div>
+    <p class="works-empty" data-works-empty hidden>No hay obras de ejemplo en esta categoría todavía.</p>
+  </div>
+</section>
+
+<!-- Fichas de proyecto (dialog) -->
+<dialog class="ficha" id="ficha" aria-labelledby="ficha-title">
+  <div class="ficha-in">
+    <button class="ficha-close" data-close aria-label="Cerrar">✕</button>
+    <div class="ficha-gallery">
+      <div class="ficha-main"><img data-ficha-main src="" alt="" width="1600" height="1200"><span class="img-tag">Imagen ilustrativa</span></div>
+      <div class="ficha-thumbs" data-ficha-thumbs></div>
+    </div>
+    <div class="ficha-info">
+      <span class="work-cat mono" data-ficha-cat></span>
+      <h3 id="ficha-title" data-ficha-title></h3>
+      <p class="ficha-flag mono">Proyecto de ejemplo — no es una obra real de la empresa</p>
+      <dl class="ficha-data" data-ficha-data></dl>
+      <div class="ficha-story" data-ficha-story></div>
+      <a class="btn btn-accent" href="#cotizador" data-close>¿Tienes un proyecto similar? Cotízalo</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ ANTES / DESPUÉS ============ -->
+<section class="section ba" id="antes-despues">
+  <div class="wrap ba-grid">
+    <div class="ba-copy">
+      <p class="kicker"><span>03</span> Antes / después</p>
+      <h2 class="sec-title reveal">La misma cocina, <em>ocho semanas después.</em></h2>
+      <p class="sec-lead reveal">Remodelación integral: se tiró un muro para integrar el comedor, se cambió toda la instalación eléctrica e hidráulica y se instaló cubierta de cuarzo. La familia siguió viviendo en la casa.</p>
+      <dl class="ba-data">
+        <div><dt>Duración</dt><dd>8 semanas</dd></div>
+        <div><dt>Superficie</dt><dd>24 m²</dd></div>
+        <div><dt>Acabado</dt><dd>Residencial</dd></div>
+      </dl>
+      <p class="mono small muted">Remodelación de ejemplo · imágenes ilustrativas</p>
+    </div>
+    <div class="ba-slider" data-ba style="--pos:50%">
+      <img class="ba-after" src="assets/img/despues-cocina.webp" alt="Cocina remodelada con isla, cubierta de cuarzo y luz cálida" width="1600" height="1200" loading="lazy">
+      <div class="ba-before-wrap"><img class="ba-before" src="assets/img/antes-cocina.webp" alt="La misma cocina antes de la remodelación, con muebles viejos y azulejo deteriorado" width="1600" height="1200" loading="lazy"></div>
+      <span class="ba-label ba-label-l mono">Antes</span>
+      <span class="ba-label ba-label-r mono">Después</span>
+      <div class="ba-handle" aria-hidden="true"><span>⟷</span></div>
+      <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Deslizar para comparar antes y después">
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section class="section process" id="proceso">
+  <div class="process-pin" data-process>
+    <div class="wrap process-head">
+      <p class="kicker"><span>04</span> Cómo trabajamos</p>
+      <h2 class="sec-title reveal">Siete pasos, <em>todos por escrito.</em></h2>
+      <p class="sec-lead reveal">Sabes qué sigue, cuánto tarda y cuándo pagas. Tiempos orientativos para una casa de 120–200 m².</p>
+    </div>
+    <div class="process-track" data-process-track>
+      <ol class="steps">
+        <li class="step"><span class="step-n">01</span><h3>Visita técnica</h3><p>Vamos a tu terreno o casa, medimos, revisamos suelo, colindancias y servicios.</p><span class="step-t mono">1–3 días</span></li>
+        <li class="step"><span class="step-n">02</span><h3>Proyecto</h3><p>Diseño arquitectónico contigo, renders y proyecto ejecutivo con cálculo estructural.</p><span class="step-t mono">3–6 semanas</span></li>
+        <li class="step"><span class="step-n">03</span><h3>Presupuesto</h3><p>Presupuesto por partidas a precio cerrado y calendario de pagos por avance.</p><span class="step-t mono">1 semana</span></li>
+        <li class="step"><span class="step-n">04</span><h3>Permisos</h3><p>Tramitamos licencia de construcción, alineamiento y número oficial.</p><span class="step-t mono">4–10 semanas</span></li>
+        <li class="step"><span class="step-n">05</span><h3>Obra</h3><p>Residente de obra diario y reporte semanal con fotos. Pagas al verificar cada avance.</p><span class="step-t mono">5–10 meses</span></li>
+        <li class="step"><span class="step-n">06</span><h3>Entrega</h3><p>Recorrido de revisión, lista de detalles, planos finales y manual de mantenimiento.</p><span class="step-t mono">1–2 semanas</span></li>
+        <li class="step"><span class="step-n">07</span><h3>Garantía</h3><p>Garantía por escrito en estructura, impermeabilización e instalaciones.</p><span class="step-t mono">Hasta 5 años*</span></li>
+      </ol>
+      <div class="process-rail" aria-hidden="true"><span data-process-bar></span></div>
+    </div>
+    <p class="wrap mono small muted process-note">* Plazos y garantías de ejemplo; se definen en cada contrato.</p>
+  </div>
+</section>
+
+<!-- ============ POR QUÉ NOSOTROS ============ -->
+<section class="section why" id="por-que">
+  <div class="wrap why-grid">
+    <div class="why-media reveal">
+      <img src="assets/img/equipo-casco.webp" alt="Equipo de obra con cascos y chalecos revisando planos en sitio" width="1200" height="1500" loading="lazy" decoding="async">
+      <span class="img-tag">Imagen ilustrativa</span>
+      <div class="why-badge"><b>1</b><span>residente de obra asignado a tu casa, de inicio a fin</span></div>
+    </div>
+    <div class="why-copy">
+      <p class="kicker"><span>05</span> Por qué nosotros</p>
+      <h2 class="sec-title reveal">El miedo a que la obra <em>no se acabe</em> tiene solución.</h2>
+      <ul class="why-list">
+        <li class="reveal"><span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 3 8v2h18V8l-9-5ZM5 10v8M9 10v8M15 10v8M19 10v8M3 21h18" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><div><h3>Residente de obra</h3><p>Un ingeniero o arquitecto en tu obra todos los días. Es tu contacto directo y responde por la calidad.</p></div></li>
+        <li class="reveal"><span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 5l1.5-2h5L16 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><div><h3>Reportes semanales con fotos</h3><p>Cada viernes recibes por WhatsApp el avance, fotos y lo que sigue la próxima semana.</p></div></li>
+        <li class="reveal"><span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17h4v4H3zM10 12h4v9h-4zM17 6h4v15h-4z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><div><h3>Pagos por avance</h3><p>Nunca pagas la obra por adelantado: pagas cada etapa cuando está terminada y verificada.</p></div></li>
+        <li class="reveal"><span class="why-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span><div><h3>Personal asegurado</h3><p>Cuadrillas con alta en el IMSS y equipo de protección. Tú no cargas riesgos laborales.</p></div></li>
+      </ul>
+      <div class="compare reveal">
+        <div class="compare-col compare-bad"><h4>Construir por tu cuenta</h4><ul><li>El precio cambia cada semana</li><li>Nadie responde por la fecha</li><li>Pagos por adelantado al maestro</li><li>Sin planos ni garantía</li></ul></div>
+        <div class="compare-col compare-good"><h4>Con Cimbra Norte</h4><ul><li>Precio cerrado por contrato</li><li>Calendario firmado</li><li>Pagas lo que ya está hecho</li><li>Planos finales y garantía escrita</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COTIZADOR IA ============ -->
+<section class="section quoter" id="cotizador">
+  <div class="wrap">
+    <header class="sec-head quoter-head">
+      <p class="kicker kicker-light"><span>06</span> Cotizador de obra con IA</p>
+      <h2 class="sec-title reveal">Sube tu plano. <em>Nosotros sacamos las medidas.</em></h2>
+      <p class="sec-lead reveal">Toma una foto de tu plano o de un croquis a mano: la inteligencia artificial lee las medidas escritas y llena el cotizador. Luego marcas tu terreno en el mapa y recibes un rango de costo, tiempos y mensualidad aproximada.</p>
+    </header>
+
+    <div class="q-shell">
+      <ol class="q-steps" aria-label="Pasos del cotizador">
+        <li class="is-on" data-qstep-ind="1"><span>1</span> Plano</li>
+        <li data-qstep-ind="2"><span>2</span> Terreno</li>
+        <li data-qstep-ind="3"><span>3</span> Obra</li>
+        <li data-qstep-ind="4"><span>4</span> Contacto</li>
+        <li data-qstep-ind="5"><span>5</span> Cotización</li>
+      </ol>
+
+      <form class="q-form" id="cotizador-form" novalidate>
+        <!-- PASO 1 -->
+        <fieldset class="q-step is-on" data-qstep="1">
+          <legend class="q-legend">Sube tu plano o croquis <span class="muted">(opcional)</span></legend>
+          <label class="drop" data-drop>
+            <input type="file" name="documento" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-file>
+            <span class="drop-ico" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 34v6h32v-6M24 8v22M15 17l9-9 9 9" fill="none" stroke="currentColor" stroke-width="2.4"/></svg></span>
+            <span class="drop-t"><b>Arrastra aquí tu plano</b> o toca para elegir una foto / PDF</span>
+            <span class="drop-s mono">JPG · PNG · HEIC · PDF · máx. 10 MB</span>
+          </label>
+          <div class="scan" data-scan hidden>
+            <div class="scan-preview"><img data-scan-img alt="Vista previa del documento subido"><span class="scan-beam" aria-hidden="true"></span><span class="scan-pdf mono" data-scan-pdf hidden>PDF</span></div>
+            <p class="scan-msg" data-scan-msg role="status" aria-live="polite">Leyendo medidas…</p>
+          </div>
+          <div class="extract" data-extract hidden>
+            <p class="extract-h"><span class="ok-dot"></span> Esto leímos en tu documento. <span class="muted">Lo que no venía escrito quedó vacío: complétalo tú.</span></p>
+          </div>
+          <div class="q-grid">
+            <label class="fld"><span>m² de terreno</span><input type="number" inputmode="decimal" min="0" step="0.1" name="m2Terreno" placeholder="Ej. 160"></label>
+            <label class="fld"><span>m² de construcción</span><input type="number" inputmode="decimal" min="0" step="0.1" name="m2" placeholder="Ej. 180"></label>
+            <label class="fld"><span>Niveles</span><input type="number" inputmode="numeric" min="1" max="3" step="1" name="niveles" placeholder="1–3"></label>
+            <label class="fld"><span>Recámaras</span><input type="number" inputmode="numeric" min="0" max="12" step="1" name="recamaras" placeholder="Ej. 3"></label>
+            <label class="fld"><span>Baños</span><input type="number" inputmode="decimal" min="0" max="10" step="0.5" name="banos" placeholder="Ej. 2.5"></label>
+          </div>
+          <p class="q-hint mono">Si no tienes plano, escribe las medidas aproximadas o sigue al siguiente paso.</p>
+          <p class="q-privacy small muted">El documento solo se usa para leer las medidas y no se guarda en nuestro servidor. Consulta el <a href="aviso-de-privacidad.html">aviso de privacidad</a>.</p>
+          <div class="q-nav"><span></span><button type="button" class="btn btn-accent" data-next>Siguiente: tu terreno →</button></div>
+        </fieldset>
+
+        <!-- PASO 2 -->
+        <fieldset class="q-step" data-qstep="2">
+          <legend class="q-legend">¿Dónde está tu terreno?</legend>
+          <div class="addr">
+            <label class="fld fld-wide"><span>Dirección o colonia</span>
+              <input type="text" name="direccion" autocomplete="off" placeholder="Ej. Calle Durazno 120, Los Viñedos, Torreón" data-addr aria-autocomplete="list" aria-controls="addr-list">
+            </label>
+            <ul class="addr-list" id="addr-list" role="listbox" data-addr-list hidden></ul>
+          </div>
+          <div class="draw">
+            <div class="draw-map" id="mapa-terreno" data-draw-map aria-label="Mapa para dibujar el contorno del terreno"></div>
+            <div class="draw-tools">
+              <p class="draw-help"><b>Dibuja el contorno:</b> toca cada esquina del terreno sobre el mapa. Con 3 puntos o más calculamos los m².</p>
+              <div class="draw-btns">
+                <button type="button" class="chip" data-draw-undo>Deshacer punto</button>
+                <button type="button" class="chip" data-draw-clear>Borrar</button>
+                <button type="button" class="chip" data-draw-layer>Ver satélite</button>
+              </div>
+              <div class="draw-area"><span class="mono">Área dibujada</span><b data-draw-area>—</b></div>
+              <button type="button" class="btn btn-ghost btn-sm" data-draw-use disabled>Usar como m² de terreno</button>
+              <p class="small muted">El área dibujada es aproximada. Las medidas oficiales salen de tus escrituras y de la visita técnica.</p>
+            </div>
+          </div>
+          <div class="q-nav"><button type="button" class="btn btn-ghost" data-prev>← Atrás</button><button type="button" class="btn btn-accent" data-next>Siguiente: tu obra →</button></div>
+        </fieldset>
+
+        <!-- PASO 3 -->
+        <fieldset class="q-step" data-qstep="3">
+          <legend class="q-legend">¿Qué quieres construir?</legend>
+          <div class="opt-grid" role="radiogroup" aria-label="Tipo de obra">
+            <label class="opt"><input type="radio" name="tipoProyecto" value="casa_habitacion" checked><span><b>Casa nueva</b><i>En tu terreno</i></span></label>
+            <label class="opt"><input type="radio" name="tipoProyecto" value="ampliacion"><span><b>Ampliación</b><i>Segundo piso, recámara…</i></span></label>
+            <label class="opt"><input type="radio" name="tipoProyecto" value="remodelacion"><span><b>Remodelación</b><i>Cocina, baños, fachada</i></span></label>
+            <label class="opt"><input type="radio" name="tipoProyecto" value="local_comercial"><span><b>Local comercial</b><i>Nuevo o adecuación</i></span></label>
+            <label class="opt"><input type="radio" name="tipoProyecto" value="oficinas"><span><b>Oficinas</b><i>Consultorios, despachos</i></span></label>
+          </div>
+          <p class="q-sub">Nivel de acabado</p>
+          <div class="opt-grid opt-4" role="radiogroup" aria-label="Nivel de acabado">
+            <label class="opt opt-tier"><input type="radio" name="acabado" value="economico"><span><b>Económico</b><i>Funcional, piso cerámico, cancelería de aluminio</i><em class="mono" data-tier="economico"></em></span></label>
+            <label class="opt opt-tier"><input type="radio" name="acabado" value="medio" checked><span><b>Medio</b><i>Porcelanato, cocina integral, buen aislamiento</i><em class="mono" data-tier="medio"></em></span></label>
+            <label class="opt opt-tier"><input type="radio" name="acabado" value="residencial"><span><b>Residencial</b><i>Cancelería térmica, cuarzo, iluminación de diseño</i><em class="mono" data-tier="residencial"></em></span></label>
+            <label class="opt opt-tier"><input type="radio" name="acabado" value="premium"><span><b>Premium</b><i>Materiales importados, domótica, carpintería fina</i><em class="mono" data-tier="premium"></em></span></label>
+          </div>
+          <div class="q-grid q-grid-3">
+            <label class="fld"><span>¿Ya tienes planos?</span><select name="tienePlanos"><option value="no">No, necesito proyecto</option><option value="si">Sí, ya tengo planos</option></select></label>
+            <label class="fld"><span>¿Cómo piensas pagar?</span><select name="financiamiento"><option value="contado">Recursos propios</option><option value="infonavit">Crédito Infonavit</option><option value="fovissste">Crédito Fovissste</option><option value="bancario">Crédito bancario</option><option value="no_se">Aún no lo sé</option></select></label>
+            <label class="fld"><span>m² de construcción</span><input type="number" inputmode="decimal" min="10" step="0.1" name="m2Confirm" placeholder="Confirma los m²" data-mirror="m2"></label>
+          </div>
+          <p class="q-error" data-q-error role="alert"></p>
+          <div class="q-nav"><button type="button" class="btn btn-ghost" data-prev>← Atrás</button><button type="button" class="btn btn-accent" data-next>Ver mi cotización →</button></div>
+        </fieldset>
+
+        <!-- PASO 4 -->
+        <fieldset class="q-step" data-qstep="4">
+          <legend class="q-legend">¿A dónde te enviamos tu cotización?</legend>
+          <div class="q-teaser">
+            <div class="teaser-blur" aria-hidden="true"><span>$ ●,●●●,●●● – $ ●,●●●,●●●</span><span>●● semanas de obra</span></div>
+            <p>Tu cotización está lista. Déjanos tu WhatsApp <b>o</b> tu email para mostrártela y que un arquitecto pueda darte seguimiento.</p>
+          </div>
+          <div class="q-grid">
+            <label class="fld"><span>Nombre</span><input type="text" name="nombre" autocomplete="name" placeholder="Tu nombre"></label>
+            <label class="fld"><span>WhatsApp (10 dígitos)</span><input type="tel" name="telefono" inputmode="tel" autocomplete="tel" placeholder="871 123 4567"></label>
+            <label class="fld"><span>Email <span class="muted">(opcional si das WhatsApp)</span></span><input type="email" name="email" autocomplete="email" placeholder="tucorreo@ejemplo.com"></label>
+          </div>
+          <input type="text" name="empresa_web" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="consent"><input type="checkbox" name="consent" value="1"> <span>Acepto que Cimbra Norte use estos datos para enviarme la cotización y contactarme sobre mi obra, según el <a href="aviso-de-privacidad.html" target="_blank">aviso de privacidad</a>.</span></label>
+          <p class="q-error" data-q-error4 role="alert"></p>
+          <div class="q-nav"><button type="button" class="btn btn-ghost" data-prev>← Atrás</button><button type="submit" class="btn btn-accent" data-submit>Mostrar mi cotización</button></div>
+        </fieldset>
+
+        <!-- PASO 5 -->
+        <fieldset class="q-step" data-qstep="5">
+          <legend class="q-legend sr-only">Tu cotización</legend>
+          <div class="result">
+            <div class="result-main">
+              <p class="mono result-k">Rango estimado de tu obra · sin IVA</p>
+              <p class="result-range"><span data-out="min">—</span><i>–</i><span data-out="max">—</span></p>
+              <p class="result-ctx" data-out="contexto"></p>
+              <div class="result-bars">
+                <div class="rbar"><div class="rbar-h"><span>Obra negra / gris</span><b data-out="obraNegra">—</b></div><div class="rbar-t"><span data-bar="negra"></span></div></div>
+                <div class="rbar"><div class="rbar-h"><span>Acabados e instalaciones finales</span><b data-out="acabados">—</b></div><div class="rbar-t"><span data-bar="acab"></span></div></div>
+                <div class="rbar" data-proy-row hidden><div class="rbar-h"><span>Proyecto ejecutivo (incluido)</span><b data-out="proyecto">—</b></div><div class="rbar-t"><span data-bar="proy"></span></div></div>
+              </div>
+            </div>
+            <div class="result-side">
+              <div class="rcard"><span class="mono">Semanas de obra</span><b data-out="semanas">—</b></div>
+              <div class="rcard"><span class="mono">Proyecto y permisos</span><b data-out="permisos">—</b></div>
+              <div class="rcard rcard-accent" data-credit-card><span class="mono" data-out="creditoNombre">Mensualidad aprox. con crédito</span><b data-out="mensualidad">—</b><small data-out="creditoSupuestos"></small></div>
+            </div>
+          </div>
+          <p class="result-legal">Estimación orientativa, <b>sin IVA</b> (16%), basada en tarifas de referencia y los datos que capturaste. No es un presupuesto: el presupuesto real por partidas se entrega tras la <b>visita técnica sin costo</b>. La mensualidad es aproximada; la institución financiera define tasa, monto y aprobación.</p>
+          <p class="result-saved" data-saved role="status"></p>
+          <div class="q-nav q-nav-final">
+            <button type="button" class="btn btn-ghost" data-restart>Hacer otra cotización</button>
+            <a class="btn btn-wa btn-lg" href="#" target="_blank" rel="noopener" data-q-wa>Enviar resumen por WhatsApp</a>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINANCIAMIENTO ============ -->
+<section class="section finance" id="financiamiento">
+  <div class="wrap fin-grid">
+    <div class="fin-copy">
+      <p class="kicker"><span>07</span> Formas de pago</p>
+      <h2 class="sec-title reveal">Construye con tu ahorro <em>o con tu crédito.</em></h2>
+      <p class="sec-lead reveal">Aceptamos estas formas de pago. Te orientamos con el trámite, pero la aprobación y las condiciones dependen de cada institución.</p>
+      <ul class="pay-list">
+        <li class="reveal"><b>Recursos propios</b><span>Pagos por avance según calendario de obra. Puedes construir por etapas.</span></li>
+        <li class="reveal"><b>Crédito Infonavit</b><span>Productos para construir en terreno propio, ampliar o mejorar tu vivienda.</span></li>
+        <li class="reveal"><b>Crédito Fovissste</b><span>Para trabajadores del Estado: construcción, ampliación o remodelación.</span></li>
+        <li class="reveal"><b>Crédito bancario</b><span>Crédito hipotecario o de construcción con el banco de tu preferencia.</span></li>
+      </ul>
+      <p class="small muted">Infonavit, Fovissste y los bancos se mencionan solo como formas de pago aceptadas; Cimbra Norte no es aliado ni representante de esas instituciones.</p>
+    </div>
+    <form class="sim" id="simulador" novalidate>
+      <h3 class="sim-title">Simulador de mensualidades</h3>
+      <label class="sim-row"><span>Monto de la obra <output data-sim-out="monto"></output></span><input type="range" name="monto" min="300000" max="8000000" step="50000" value="2200000"></label>
+      <label class="sim-row"><span>Enganche / ahorro <output data-sim-out="enganche"></output></span><input type="range" name="enganche" min="0" max="60" step="5" value="20"></label>
+      <label class="sim-row"><span>Plazo <output data-sim-out="plazo"></output></span><input type="range" name="plazo" min="5" max="30" step="1" value="15"></label>
+      <label class="sim-row"><span>Tasa anual de referencia <output data-sim-out="tasa"></output></span><input type="range" name="tasa" min="8" max="16" step="0.25" value="11.5"></label>
+      <div class="sim-res">
+        <div><span class="mono">Mensualidad aprox.</span><b data-sim="mensualidad">—</b></div>
+        <div><span class="mono">Monto financiado</span><b data-sim="financiado">—</b></div>
+        <div><span class="mono">Intereses totales</span><b data-sim="intereses">—</b></div>
+      </div>
+      <p class="small muted sim-legal">Simulación orientativa con tasa fija y pagos mensuales iguales. No incluye seguros, comisiones, avalúo ni gastos notariales. La institución financiera define tasa, monto y aprobación.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section class="section testi" id="testimonios">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker"><span>08</span> Testimonios</p>
+      <h2 class="sec-title reveal">Lo que dicen <em>las familias.</em></h2>
+      <p class="mono small muted">Testimonios de ejemplo — se sustituirán por reseñas reales de clientes.</p>
+    </header>
+    <div class="testi-grid">
+      <figure class="tcard reveal">
+        <span class="tag-demo mono">Testimonio de ejemplo</span>
+        <blockquote>“Lo que más nos tranquilizó fue el reporte de cada viernes. Vivimos en Monterrey y vimos crecer la casa por fotos. Nos la entregaron la semana que decía el contrato.”</blockquote>
+        <figcaption><b>Familia R. G.</b><span>Casa nueva · 210 m² · Torreón</span></figcaption>
+      </figure>
+      <figure class="tcard reveal">
+        <span class="tag-demo mono">Testimonio de ejemplo</span>
+        <blockquote>“Antes de subir el segundo piso revisaron la estructura y nos explicaron qué reforzar. El precio fue el mismo del inicio al final, sin ‘extras’ sorpresa.”</blockquote>
+        <figcaption><b>Mariana L.</b><span>Ampliación · 2.º piso · Lerdo</span></figcaption>
+      </figure>
+      <figure class="tcard reveal">
+        <span class="tag-demo mono">Testimonio de ejemplo</span>
+        <blockquote>“Necesitábamos abrir el local antes del Buen Fin y lo lograron. Facturaron todo y coordinaron los permisos con el municipio.”</blockquote>
+        <figcaption><b>Jorge A.</b><span>Local comercial · Gómez Palacio</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq" id="faq">
+  <div class="wrap faq-grid">
+    <header class="sec-head">
+      <p class="kicker"><span>09</span> Preguntas frecuentes</p>
+      <h2 class="sec-title reveal">Lo que todos <em>preguntan primero.</em></h2>
+      <p class="sec-lead">¿Tienes otra duda? Pregúntale a <b>Bruno</b>, nuestro asistente, en la esquina inferior derecha.</p>
+    </header>
+    <div class="faq-list">
+      <details class="qa"><summary>¿Cuánto cuesta construir por m² en Torreón?</summary><div><p>Como referencia orientativa y sin IVA: económico 8,500–10,500 MXN/m², medio 10,500–14,500, residencial 14,500–20,000 y premium desde 20,000. El costo final depende del diseño, el suelo, los acabados y el precio del acero y cemento. El presupuesto real por partidas se entrega tras la visita técnica.</p></div></details>
+      <details class="qa"><summary>¿Cuánto tarda en construirse una casa?</summary><div><p>Una casa de un nivel de unos 100 m² suele tardar de 5 a 7 meses de obra; una de dos niveles de 150–200 m², de 7 a 10 meses. Antes de iniciar, el proyecto y los permisos toman de 1 a 3 meses. La fecha de entrega queda firmada en el contrato.</p></div></details>
+      <details class="qa"><summary>¿Ustedes tramitan los permisos?</summary><div><p>Sí. Integramos el expediente y gestionamos la licencia de construcción, alineamiento y número oficial y, al final, la terminación de obra. Normalmente se piden escrituras, predial al corriente y planos firmados por un Director Responsable de Obra. Los requisitos exactos se confirman con el municipio.</p></div></details>
+      <details class="qa"><summary>¿Cobran la visita técnica?</summary><div><p>No. La primera visita técnica es sin costo dentro de la Comarca Lagunera (Torreón, Gómez Palacio, Lerdo y Matamoros).</p></div></details>
+      <details class="qa"><summary>¿Puedo construir por etapas?</summary><div><p>Sí. Puedes contratar solo la obra negra y dejar acabados para después, o construir la planta baja ahora y el segundo nivel más adelante. Lo dejamos previsto en el proyecto estructural para que crecer después sea seguro.</p></div></details>
+      <details class="qa"><summary>¿Dan factura?</summary><div><p>Sí, facturamos todos nuestros servicios (CFDI). Las cifras del cotizador se muestran sin IVA.</p></div></details>
+      <details class="qa"><summary>¿Qué garantías dan?</summary><div><p>Entregamos garantía por escrito en estructura, impermeabilización, instalaciones y acabados, con plazos definidos en el contrato. Si algo falla después de la entrega, tienes un canal directo de postventa.</p></div></details>
+      <details class="qa"><summary>¿Mi casa aguanta un segundo piso?</summary><div><p>Eso no se puede saber por teléfono ni por fotos. Requiere una visita técnica y un cálculo estructural de cimentación, muros y losa. En la visita revisamos lo existente y te decimos qué se necesita para ampliar con seguridad.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COBERTURA ============ -->
+<section class="section coverage" id="cobertura">
+  <div class="wrap cov-grid">
+    <div class="cov-copy">
+      <p class="kicker"><span>10</span> Zona de servicio</p>
+      <h2 class="sec-title reveal">Toda la <em>Comarca Lagunera.</em></h2>
+      <ul class="cov-list">
+        <li><b>Torreón</b><span>Oficina y bodega</span></li>
+        <li><b>Gómez Palacio</b><span>Visita sin costo</span></li>
+        <li><b>Lerdo</b><span>Visita sin costo</span></li>
+        <li><b>Matamoros</b><span>Visita sin costo</span></li>
+      </ul>
+      <p class="small muted">¿Fuera de esta zona? Escríbenos y lo revisamos caso por caso.</p>
+    </div>
+    <div class="cov-map" id="mapa-cobertura" aria-label="Mapa de la zona de servicio en la Comarca Lagunera">
+      <noscript><p class="pad">Atendemos Torreón, Gómez Palacio, Lerdo y Matamoros.</p></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="section contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <p class="kicker kicker-light"><span>11</span> Contacto</p>
+      <h2 class="sec-title reveal">Agenda tu <em>visita técnica sin costo.</em></h2>
+      <p class="sec-lead">Cuéntanos qué quieres construir. Te respondemos el mismo día hábil.</p>
+      <ul class="contact-list">
+        <li><span class="mono">WhatsApp</span><a href="https://wa.me/528710000000" data-wa="Hola, quiero agendar una visita técnica." target="_blank" rel="noopener">871 000 0000</a></li>
+        <li><span class="mono">Teléfono</span><a href="tel:+528710000000">871 000 0000</a></li>
+        <li><span class="mono">Email</span><a href="mailto:hola@cimbranorte.example">hola@cimbranorte.example</a></li>
+        <li><span class="mono">Horario</span><span>Lun–Vie 8:00–18:00 · Sáb 9:00–14:00</span></li>
+      </ul>
+      <p class="mono small muted">Datos de contacto de ejemplo.</p>
+    </div>
+    <form class="cform" id="contacto-form" novalidate>
+      <div class="q-grid">
+        <label class="fld"><span>Nombre</span><input type="text" name="nombre" autocomplete="name" required></label>
+        <label class="fld"><span>WhatsApp</span><input type="tel" name="telefono" inputmode="tel" autocomplete="tel" placeholder="10 dígitos"></label>
+        <label class="fld"><span>Email <span class="muted">(opcional)</span></span><input type="email" name="email" autocomplete="email"></label>
+        <label class="fld"><span>Tipo de proyecto</span><select name="tipo_proyecto"><option>Casa nueva</option><option>Ampliación</option><option>Remodelación</option><option>Local u oficina</option><option>Solo permisos</option></select></label>
+        <label class="fld"><span>Ciudad</span><select name="ciudad"><option>Torreón</option><option>Gómez Palacio</option><option>Lerdo</option><option>Matamoros</option><option>Otra</option></select></label>
+        <label class="fld fld-wide"><span>Cuéntanos tu proyecto</span><textarea name="mensaje" rows="4" placeholder="Ej. Tengo un terreno de 8 × 20 m en Los Viñedos y quiero una casa de 3 recámaras…"></textarea></label>
+      </div>
+      <input type="text" name="empresa_web" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent"><input type="checkbox" name="consent" value="1"> <span>Acepto el <a href="aviso-de-privacidad.html" target="_blank">aviso de privacidad</a> y que me contacten sobre mi proyecto.</span></label>
+      <p class="q-error" data-c-msg role="status"></p>
+      <div class="cform-btns">
+        <button type="submit" class="btn btn-accent btn-lg">Pedir visita técnica</button>
+        <a class="btn btn-wa btn-lg" href="https://wa.me/528710000000" data-wa="Hola, quiero agendar una visita técnica." target="_blank" rel="noopener">Mejor por WhatsApp</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo logo-foot" href="#top"><svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M2 26h36M14 26V2M26 38V26" stroke="currentColor" stroke-width="2.5"/><rect x="26" y="8" width="6" height="12" fill="var(--accent)"/></svg><span class="logo-text"><b>CIMBRA</b><i>NORTE</i></span></a>
+      <p class="muted small">Constructora residencial en Torreón, Coahuila. Casas a medida, remodelaciones, ampliaciones y obra comercial.</p>
+    </div>
+    <nav aria-label="Pie de página"><b>Explora</b><a href="#servicios">Servicios</a><a href="#obras">Obras</a><a href="#cotizador">Cotizador</a><a href="#faq">Preguntas</a></nav>
+    <nav aria-label="Legal"><b>Legal</b><a href="aviso-de-privacidad.html">Aviso de privacidad</a><a href="#contacto">Contacto</a></nav>
+  </div>
+  <div class="wrap foot-bottom mono small">
+    <span>© 2026 Cimbra Norte Construcciones · Sitio de demostración: empresa, cifras, obras y testimonios de ejemplo.</span>
+    <span>Imágenes ilustrativas generadas con IA.</span>
+  </div>
+</footer>
+
+<!-- ============ FLOTANTES ============ -->
+<a class="fab-wa" href="https://wa.me/528710000000" data-wa="Hola, vi su web y quiero información sobre una obra." target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3Z"/></svg>
+</a>
+
+<div class="chat" data-chat>
+  <button class="chat-fab" data-chat-toggle aria-expanded="false" aria-controls="chat-panel">
+    <span class="chat-fab-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+    <span class="chat-fab-txt">Pregúntale a Bruno</span>
+  </button>
+  <section class="chat-panel" id="chat-panel" aria-label="Asistente Bruno" hidden>
+    <header class="chat-head">
+      <span class="chat-avatar" aria-hidden="true">B</span>
+      <div><b>Bruno</b><span>Asistente virtual · responde dudas de obra</span></div>
+      <button class="chat-x" data-chat-toggle aria-label="Cerrar asistente">✕</button>
+    </header>
+    <div class="chat-log" data-chat-log aria-live="polite">
+      <div class="msg msg-bot">¡Hola! Soy Bruno 👷 Te ayudo con dudas de construcción: costo por m², tiempos, permisos, créditos o construir por etapas. ¿Qué tienes en mente?</div>
+    </div>
+    <div class="chat-sugs" data-chat-sugs>
+      <button type="button">¿Cuánto cuesta construir por m²?</button>
+      <button type="button">¿Puedo construir con Infonavit?</button>
+      <button type="button">¿Qué necesito para la licencia?</button>
+      <button type="button">¿Puedo construir por etapas?</button>
+    </div>
+    <form class="chat-form" data-chat-form>
+      <input type="text" name="q" maxlength="500" placeholder="Escribe tu pregunta…" aria-label="Escribe tu pregunta" autocomplete="off">
+      <button type="submit" aria-label="Enviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+    </form>
+    <p class="chat-legal">Respuestas orientativas generadas con IA. No sustituyen la visita técnica. <a href="aviso-de-privacidad.html">Privacidad</a></p>
+  </section>
+</div>
+
+<script defer src="lib/gsap.min.js"></script>
+<script defer src="lib/ScrollTrigger.min.js"></script>
+<script defer src="lib/leaflet.js"></script>
+<script defer src="lib/manifest.js?v=20261017"></script>
+<script defer src="js/cotizador.js?v=20261017"></script>
+<script defer src="main.js?v=20261017"></script>
+</body>
+</html>
