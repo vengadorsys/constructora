@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smashers · Hamburguesas Smash Artesanales</title>
+<meta name="description" content="Hamburguesas smash artesanales: crujientes por fuera, jugosas por dentro. Pide ahora y llega a tu puerta.">
+<meta name="theme-color" content="#D7261E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-doble-smash.webp">
+
+<style>
+/* =========================================================
+   1. THEMING (variables de identidad)
+   ========================================================= */
+:root{
+  --rojo:#D7261E;          /* principal: estimula el apetito */
+  --rojo-oscuro:#7A0F0B;   /* footer / CTA */
+  --rojo-profundo:#A81810; /* fondo final del despiece */
+  --mostaza:#FFC72C;       /* acentos, etiquetas y botones */
+  --crema:#FFF6E6;         /* fondos informativos */
+  --tinta:#141010;         /* texto oscuro */
+  --tinta-suave:#5B4D45;
+
+  --bg-hero:var(--rojo);
+  --bg-ingredientes:var(--rojo);
+  --bg-marquee:var(--mostaza);
+  --bg-menu:var(--crema);
+  --bg-footer:var(--rojo-oscuro);
+
+  --f-titulo:'Anton', 'Bebas Neue', Impact, sans-serif;
+  --f-texto:'Montserrat', system-ui, -apple-system, sans-serif;
+
+  --gutter:clamp(16px, 4vw, 48px);
+  --radio:999px;
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--f-texto);
+  background:var(--rojo);
+  color:var(--crema);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto;user-select:none;-webkit-user-drag:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.titulo{font-family:var(--f-titulo);text-transform:uppercase;font-weight:400;line-height:.9;letter-spacing:.01em}
+.eyebrow{
+  display:inline-block;font-weight:800;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--mostaza);color:var(--tinta);padding:.45em .9em;border-radius:var(--radio);
+}
+/* Máscara para revelar texto de abajo hacia arriba */
+.linea{display:block;overflow:hidden;padding:.14em 0 .04em;margin-top:-.14em}
+.linea > span{display:block;will-change:transform}
+
+/* =========================================================
+   3. HEADER
+   ========================================================= */
+.header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px var(--gutter);
+  transition:background-color .3s ease, color .3s ease;
+}
+.header.solido{background:rgba(20,16,16,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.logo{font-family:var(--f-titulo);font-size:1.6rem;letter-spacing:.04em;color:var(--crema)}
+.logo b{color:var(--mostaza);font-weight:400}
+.header-acciones{display:flex;align-items:center;gap:10px}
+.carrito{
+  display:flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;
+  padding:9px 14px;border-radius:var(--radio);background:rgba(255,246,230,.12);color:var(--crema);
+}
+.carrito-num{
+  min-width:22px;height:22px;border-radius:50%;display:grid;place-items:center;
+  background:var(--mostaza);color:var(--tinta);font-size:.75rem;font-weight:800;
+}
+.btn-mini{
+  font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--mostaza);color:var(--tinta);padding:11px 18px;border-radius:var(--radio);
+}
+
+/* =========================================================
+   4. HERO
+   ========================================================= */
+.hero{
+  position:relative;min-height:100svh;background:var(--bg-hero);
+  display:grid;place-items:center;overflow:hidden;
+  padding:96px var(--gutter) 56px;
+}
+.hero-titulo{
+  position:relative;z-index:1;text-align:center;color:var(--crema);
+  font-size:clamp(4.2rem, 17vw, 15.5rem);
+}
+.hero-titulo .linea:last-child{color:var(--mostaza)}
+.hero-burger{
+  position:absolute;z-index:2;left:50%;top:54%;
+  width:min(74vw, 64vh, 640px);
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 30px 40px rgba(60,0,0,.45));
+}
+.hero-burger img{width:100%;will-change:transform}
+.hero-pie{
+  position:absolute;z-index:3;left:0;right:0;bottom:22px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding:0 var(--gutter);font-size:.8rem;font-weight:600;letter-spacing:.06em;
+}
+.hero-pie p{max-width:26ch;text-transform:uppercase;opacity:.9}
+.scroll-hint{display:flex;align-items:center;gap:10px;text-transform:uppercase}
+.scroll-hint i{display:block;width:2px;height:34px;background:var(--mostaza);border-radius:2px;transform-origin:top}
+
+/* =========================================================
+   5. ANATOMÍA / DESPIECE
+   ========================================================= */
+.anatomia{position:relative;background:var(--bg-ingredientes);overflow:hidden}
+.anatomia-escena{
+  position:relative;height:100svh;width:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.anatomia-cabecera{
+  position:absolute;top:104px;left:var(--gutter);right:var(--gutter);z-index:5;
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;pointer-events:none;
+}
+.anatomia-cabecera h2{font-size:clamp(2.2rem, 6vw, 5rem);color:var(--crema)}
+.anatomia-cabecera h2 em{font-style:normal;color:var(--mostaza)}
+.anatomia-contador{font-family:var(--f-titulo);font-size:clamp(1.4rem,3vw,2.2rem);color:var(--mostaza);white-space:nowrap}
+
+/* Pila de capas: todas comparten el mismo eje central */
+.pila{
+  position:relative;width:min(30vw, 34vh, 330px);aspect-ratio:1/1;
+  perspective:900px;
+}
+.capa{
+  position:absolute;left:0;top:50%;width:100%;
+  transform:translateY(-50%);
+  will-change:transform;
+}
+.capa-img{transform-style:preserve-3d;will-change:transform}
+.capa-img img{width:100%;filter:drop-shadow(0 18px 18px rgba(50,0,0,.35))}
+.capa[data-capa="tomate"] .capa-img,
+.capa[data-capa="lechuga"] .capa-img{width:92%;margin:0 auto}
+.capa[data-capa="queso"] .capa-img{width:96%;margin:0 auto}
+.capa[data-capa="pan-inf"] .capa-img{width:94%;margin:0 auto}
+
+/* Etiquetas informativas junto a cada ingrediente */
+.etiqueta{
+  position:absolute;top:50%;width:min(28vw, 300px);
+  transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;
+  opacity:0;
+}
+.etiqueta.der{left:calc(100% + clamp(18px, 4vw, 70px))}
+.etiqueta.izq{right:calc(100% + clamp(18px, 4vw, 70px));text-align:right;align-items:flex-end}
+.etiqueta::before{
+  content:"";position:absolute;top:50%;width:clamp(12px,3vw,52px);height:2px;background:var(--mostaza);
+}
+.etiqueta.der::before{right:calc(100% + 8px)}
+.etiqueta.izq::before{left:calc(100% + 8px)}
+.etiqueta .num{font-family:var(--f-titulo);color:var(--mostaza);font-size:1rem;letter-spacing:.08em}
+.etiqueta h3{font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;font-size:clamp(1.3rem, 2.4vw, 2.2rem);line-height:.95;color:var(--crema)}
+.etiqueta p{font-size:clamp(.78rem, 1vw, .92rem);font-weight:500;line-height:1.35;color:rgba(255,246,230,.82)}
+.etiqueta .tag{
+  align-self:inherit;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--mostaza);color:var(--tinta);padding:.35em .7em;border-radius:var(--radio);width:max-content;
+}
+
+/* =========================================================
+   6. MARQUEE
+   ========================================================= */
+.marquee{
+  background:var(--bg-marquee);color:var(--tinta);overflow:hidden;
+  padding:clamp(14px,2.2vw,26px) 0;position:relative;z-index:2;
+}
+.marquee-pista{display:flex;width:max-content;will-change:transform}
+.marquee-grupo{display:flex;flex-shrink:0}
+.marquee span{
+  font-family:var(--f-titulo);text-transform:uppercase;white-space:nowrap;
+  font-size:clamp(2.2rem, 6.5vw, 5.5rem);line-height:1;padding-right:.35em;
+}
+
+/* =========================================================
+   7. MENÚ
+   ========================================================= */
+.menu{
+  background:var(--bg-menu);color:var(--tinta);
+  padding:clamp(80px,12vw,150px) var(--gutter) clamp(90px,12vw,160px);
+}
+.menu-cabecera{max-width:1200px;margin:0 auto clamp(48px,7vw,90px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px}
+.menu-cabecera h2{font-size:clamp(3rem, 9vw, 7.5rem);color:var(--rojo)}
+.menu-cabecera p{max-width:30ch;font-weight:500;color:var(--tinta-suave);line-height:1.5}
+.menu-grid{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr;gap:clamp(56px,6vw,40px);
+}
+.combo{display:flex;flex-direction:column;text-align:center;align-items:center}
+.combo-foto{
+  width:100%;max-width:380px;aspect-ratio:1/1;display:grid;place-items:center;
+  position:relative;margin-bottom:22px;
+}
+.combo-foto::before{
+  content:"";position:absolute;inset:14% 8% 10%;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(215,38,30,.12), transparent);
+}
+.combo-foto img{position:relative;width:88%;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 22px 22px rgba(80,20,0,.22))}
+.combo:hover .combo-foto img{transform:translateY(-8px) rotate(-3deg) scale(1.04)}
+.combo-badge{
+  position:absolute;top:6%;right:6%;z-index:2;
+  font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--mostaza);color:var(--tinta);padding:.5em .85em;border-radius:var(--radio);
+}
+.combo h3{font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,3.2vw,2.6rem);line-height:.95}
+.combo-ingredientes{margin:10px 0 6px;font-size:.92rem;font-weight:500;color:var(--tinta-suave);line-height:1.5;max-width:32ch}
+.combo-extra{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--rojo)}
+.combo-pie{display:flex;align-items:center;gap:18px;margin-top:20px}
+.precio{font-family:var(--f-titulo);font-size:2.2rem;line-height:1;color:var(--tinta)}
+.precio small{font-family:var(--f-texto);font-size:.75rem;font-weight:700;vertical-align:top;margin-right:2px}
+.btn-agregar{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:800;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:12px 20px;border-radius:var(--radio);
+  background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);
+  transition:background-color .2s, color .2s, box-shadow .2s, transform .15s;
+}
+.btn-agregar:hover{background:var(--rojo);color:var(--crema);box-shadow:inset 0 0 0 2px var(--rojo)}
+.btn-agregar:active{transform:scale(.96)}
+.btn-agregar.ok{background:var(--mostaza);box-shadow:inset 0 0 0 2px var(--mostaza);color:var(--tinta)}
+.btn-agregar svg{width:14px;height:14px}
+
+/* =========================================================
+   8. CTA / FOOTER
+   ========================================================= */
+.cta{
+  background:var(--crema); /* GSAP lo anima de crema → rojo oscuro */
+  color:var(--tinta);
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:clamp(90px,12vw,140px) var(--gutter) 40px;position:relative;
+}
+.cta h2{font-size:clamp(3.2rem, 11vw, 10rem);max-width:12ch}
+.cta h2 .linea:first-child{color:var(--mostaza)}
+.cta-sub{margin:22px 0 clamp(36px,5vw,56px);font-weight:600;font-size:clamp(.95rem,1.4vw,1.15rem);opacity:.9}
+.btn-pide{
+  font-family:var(--f-titulo);text-transform:uppercase;letter-spacing:.03em;
+  font-size:clamp(2.2rem, 6vw, 4.6rem);line-height:1;
+  background:var(--mostaza);color:var(--tinta);
+  padding:.42em 1.1em .46em;border-radius:var(--radio);
+  box-shadow:0 18px 50px rgba(255,199,44,.35);
+  display:inline-flex;align-items:center;gap:.35em;will-change:transform;
+}
+.btn-pide svg{width:.75em;height:.75em}
+.cta-resumen{margin-top:18px;font-size:.85rem;font-weight:600;min-height:1.2em;opacity:.85}
+.footer-info{
+  width:100%;max-width:1200px;margin:clamp(70px,10vw,120px) auto 0;
+  display:grid;grid-template-columns:1fr;gap:28px;text-align:left;
+  padding-top:32px;border-top:1px solid rgba(255,246,230,.18);
+  font-size:.9rem;line-height:1.6;
+}
+.footer-info h4{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mostaza);margin-bottom:8px}
+.footer-info a{text-decoration:underline;text-underline-offset:3px}
+.footer-legal{width:100%;max-width:1200px;margin:36px auto 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.75rem;opacity:.6}
+
+/* =========================================================
+   9. RESPONSIVE
+   ========================================================= */
+@media (min-width:760px){
+  .menu-grid{grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px)}
+  .footer-info{grid-template-columns:repeat(3,1fr)}
+}
+/* Móvil: pila a la izquierda, todas las etiquetas a la derecha */
+@media (max-width:759px){
+  .carrito .txt{display:none}
+  .hero{align-items:start}
+  .hero-titulo{margin-top:6vh;font-size:clamp(3.6rem, 19vw, 6rem)}
+  .hero-burger{width:min(92vw, 50vh);top:auto;bottom:9vh;transform:translateX(-50%)}
+  .etiqueta .tag{display:none}
+  .hero-pie p{display:none}
+  .hero-pie{justify-content:center}
+  .anatomia-escena{justify-content:flex-start;padding-left:6vw}
+  .pila{width:min(40vw, 30vh)}
+  .etiqueta{width:calc(48vw);gap:3px}
+  .etiqueta.izq{right:auto;left:calc(100% + 26px);text-align:left;align-items:flex-start}
+  .etiqueta.izq::before{left:auto;right:calc(100% + 6px)}
+  .etiqueta::before{width:14px}
+  .etiqueta p{display:none}
+  .anatomia-contador{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto !important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="header" id="header">
+  <a href="#inicio" class="logo" aria-label="Smashers, inicio">SMASH<b>ERS</b></a>
+  <div class="header-acciones">
+    <a href="#menu" class="carrito" aria-label="Ver tu pedido">
+      <span class="txt">Tu pedido</span>
+      <span class="carrito-num" id="carritoNum">0</span>
+    </a>
+    <a href="#pedir" class="btn-mini">Pedir</a>
+  </div>
+</header>
+
+<main>
+
+<!-- =========================================================
+     1. HERO
+     ========================================================= -->
+<section class="hero" id="inicio" aria-label="Portada">
+  <h1 class="hero-titulo titulo">
+    <span class="linea"><span>Puro sabor,</span></span>
+    <span class="linea"><span>cero reglas</span></span>
+  </h1>
+  <div class="hero-burger" id="heroBurger">
+    <img src="img/hero-doble-smash.webp" width="1000" height="954"
+         alt="Hamburguesa doble smash con cheddar derretido, pepinillos, lechuga y salsa de la casa en pan brioche">
+  </div>
+  <div class="hero-pie">
+    <p>Doble carne aplastada en plancha · Bordes crujientes · Cheddar que escurre</p>
+    <span class="scroll-hint"><i></i>Desármala</span>
+  </div>
+</section>
+
+<!-- =========================================================
+     2. ANATOMÍA / DESPIECE (sección fijada con scrub)
+     El orden de las capas es de arriba hacia abajo.
+     data-y = desplazamiento final en vh · data-speed = velocidad relativa
+     ========================================================= -->
+<section class="anatomia" id="anatomia" aria-label="Anatomía de la hamburguesa">
+  <div class="anatomia-escena">
+    <div class="anatomia-cabecera">
+      <h2 class="titulo"><span class="linea"><span>Anatomía</span></span><span class="linea"><span><em>de un smash</em></span></span></h2>
+      <span class="anatomia-contador"><span id="contador">00</span> capas</span>
+    </div>
+
+    <div class="pila" id="pila">
+      <div class="capa" data-capa="pan-sup" data-armado="-27" data-y="-36" data-speed="1.25" data-rot="-6" style="z-index:6">
+        <div class="capa-img"><img src="img/pan-superior.webp" width="800" height="538" alt="Pan brioche superior dorado y brillante"></div>
+        <div class="etiqueta der"><span class="num">01</span><h3>Brioche Mantequilla</h3><p>Horneado diario, tostado en plancha.</p></div>
+      </div>
+      <div class="capa" data-capa="tomate" data-armado="-12" data-y="-22" data-speed="0.8" data-rot="8" style="z-index:5">
+        <div class="capa-img"><img src="img/tomate.webp" width="800" height="674" alt="Rodajas de tomate fresco"></div>
+        <div class="etiqueta izq"><span class="num">02</span><h3>Tomate Bola Fresco</h3><p>Rebanado al momento. Jugoso, nunca aguado.</p></div>
+      </div>
+      <div class="capa" data-capa="lechuga" data-armado="-4" data-y="-8" data-speed="1.1" data-rot="-10" style="z-index:4">
+        <div class="capa-img"><img src="img/lechuga.webp" width="800" height="534" alt="Hoja de lechuga fresca y crujiente"></div>
+        <div class="etiqueta der"><span class="num">03</span><h3>Lechuga Crujiente</h3><p>Fría y fresca: el contraste perfecto.</p></div>
+      </div>
+      <div class="capa" data-capa="queso" data-armado="4" data-y="7" data-speed="0.7" data-rot="5" style="z-index:3">
+        <div class="capa-img"><img src="img/queso-cheddar.webp" width="800" height="471" alt="Lámina de queso cheddar fundido"></div>
+        <div class="etiqueta izq"><span class="num">04</span><h3>Cheddar Fundido Premium</h3><p>Se derrite sobre la carne caliente.</p><span class="tag">Doble capa</span></div>
+      </div>
+      <div class="capa" data-capa="carne" data-armado="12" data-y="22" data-speed="1.3" data-rot="-4" style="z-index:2">
+        <div class="capa-img"><img src="img/carne-smash.webp" width="800" height="600" alt="Carne smash con costra dorada y crujiente"></div>
+        <div class="etiqueta der"><span class="num">05</span><h3>Carne 100% Angus Smash</h3><p>Aplastada a 230 °C. Costra crujiente, centro jugoso.</p><span class="tag">90 g × 2</span></div>
+      </div>
+      <div class="capa" data-capa="pan-inf" data-armado="24" data-y="37" data-speed="0.9" data-rot="3" style="z-index:1">
+        <div class="capa-img"><img src="img/pan-inferior.webp" width="800" height="386" alt="Base de pan brioche tostada"></div>
+        <div class="etiqueta izq"><span class="num">06</span><h3>Base Tostada</h3><p>Sella los jugos. Cero pan aguado.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. MARQUEE (bucle infinito con GSAP)
+     ========================================================= -->
+<div class="marquee" aria-label="Crujientes, jugosas, recién hechas">
+  <div class="marquee-pista" id="marquee" aria-hidden="true">
+    <div class="marquee-grupo">
+      <span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span>
+      <span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     4. MENÚ (3 combos estrella)
+     ========================================================= -->
+<section class="menu" id="menu" aria-labelledby="menuTitulo">
+  <div class="menu-cabecera">
+    <h2 class="titulo revelar" id="menuTitulo"><span class="linea"><span>Los 3 que</span></span><span class="linea"><span>mandan</span></span></h2>
+    <p>Cada combo incluye papas crujientes y bebida. Sin vueltas: elige y muerde.</p>
+  </div>
+
+  <div class="menu-grid">
+    <article class="combo">
+      <div class="combo-foto">
+        <span class="combo-badge">Más pedida</span>
+        <img src="img/menu-clasica.webp" width="720" height="652" loading="lazy" alt="Hamburguesa Clásica Smash con cheddar, pepinillos, tomate y lechuga">
+      </div>
+      <h3>Clásica Smash</h3>
+      <p class="combo-ingredientes">Carne Angus smash, cheddar fundido, pepinillos, tomate, lechuga, salsa de la casa</p>
+      <span class="combo-extra">+ Papas + Bebida</span>
+      <div class="combo-pie">
+        <span class="precio"><small>$</small>159</span>
+        <button class="btn-agregar" data-nombre="Clásica Smash" data-precio="159">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Agregar</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="combo">
+      <div class="combo-foto">
+        <span class="combo-badge">Ahumada</span>
+        <img src="img/menu-bacon-bbq.webp" width="720" height="639" loading="lazy" alt="Hamburguesa Bacon BBQ con tocino crujiente, salsa BBQ y cheddar">
+      </div>
+      <h3>Bacon BBQ</h3>
+      <p class="combo-ingredientes">Carne Angus smash, tocino crujiente, cheddar, salsa BBQ ahumada, lechuga</p>
+      <span class="combo-extra">+ Papas + Bebida</span>
+      <div class="combo-pie">
+        <span class="precio"><small>$</small>179</span>
+        <button class="btn-agregar" data-nombre="Bacon BBQ" data-precio="179">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Agregar</span>
+        </button>
+      </div>
+    </article>
+
+    <article class="combo">
+      <div class="combo-foto">
+        <span class="combo-badge">Extra crujiente</span>
+        <img src="img/menu-pollo-crispy.webp" width="720" height="649" loading="lazy" alt="Hamburguesa de pollo crispy empanizado con cheddar, tomate y lechuga">
+      </div>
+      <h3>Pollo Crispy</h3>
+      <p class="combo-ingredientes">Pechuga empanizada crujiente, cheddar, tomate, lechuga, mayo chipotle</p>
+      <span class="combo-extra">+ Papas + Bebida</span>
+      <div class="combo-pie">
+        <span class="precio"><small>$</small>169</span>
+        <button class="btn-agregar" data-nombre="Pollo Crispy" data-precio="169">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          <span>Agregar</span>
+        </button>
+      </div>
+    </article>
+  </div>
+</section>
+
+</main>
+
+<!-- =========================================================
+     5. CALL TO ACTION + FOOTER
+     ========================================================= -->
+<footer class="cta" id="pedir">
+  <h2 class="titulo revelar">
+    <span class="linea"><span>¿Babeando?</span></span>
+    <span class="linea"><span>Haz que llegue</span></span>
+    <span class="linea"><span>a tu puerta.</span></span>
+  </h2>
+  <p class="cta-sub">Recién salida de la plancha · Entrega en 30–40 min</p>
+
+  <!-- CAMBIAR: número de WhatsApp del restaurante (formato 52 + 10 dígitos) -->
+  <a class="btn-pide" id="btnPide" href="https://wa.me/5210000000000" target="_blank" rel="noopener">
+    Pide ahora
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+  <p class="cta-resumen" id="ctaResumen" aria-live="polite"></p>
+
+  <div class="footer-info">
+    <div>
+      <h4>Dónde</h4>
+      <!-- CAMBIAR: dirección real -->
+      <p>Av. Siempre Jugosa 123, Col. Centro<br>Tu Ciudad, México</p>
+      <p><a href="https://maps.google.com/?q=Av.+Siempre+Jugosa+123" target="_blank" rel="noopener">Ver en el mapa</a></p>
+    </div>
+    <div>
+      <h4>Horario</h4>
+      <p>Lun – Jue · 13:00 – 23:00<br>Vie – Dom · 13:00 – 01:00</p>
+    </div>
+    <div>
+      <h4>Síguenos</h4>
+      <!-- CAMBIAR: redes reales -->
+      <p><a href="https://instagram.com/" target="_blank" rel="noopener">Instagram</a> · <a href="https://facebook.com/" target="_blank" rel="noopener">Facebook</a> · <a href="https://tiktok.com/" target="_blank" rel="noopener">TikTok</a></p>
+    </div>
+  </div>
+  <div class="footer-legal">
+    <span>© <span id="anio">2026</span> Smashers · Hamburguesas Smash Artesanales</span>
+    <span>Imágenes ilustrativas</span>
+  </div>
+</footer>
+
+<!-- =========================================================
+     GSAP + ScrollTrigger
+     ========================================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>gsap.registerPlugin(ScrollTrigger);</script>
+
+<script>
+(() => {
+  const $  = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  $('#anio').textContent = new Date().getFullYear();
+
+  /* -------------------------------------------------------
+     CARRITO (contador + mensaje de WhatsApp)
+     ------------------------------------------------------- */
+  // CAMBIAR: número de WhatsApp del restaurante
+  const WHATSAPP = '5210000000000';
+  const pedido = {};
+  const btnPide = $('#btnPide');
+
+  function actualizarPedido() {
+    const items = Object.entries(pedido);
+    const piezas = items.reduce((n, [, v]) => n + v.cant, 0);
+    const total  = items.reduce((n, [, v]) => n + v.cant * v.precio, 0);
+    $('#carritoNum').textContent = piezas;
+    $('#ctaResumen').textContent = piezas ? `Tu pedido: ${piezas} combo${piezas > 1 ? 's' : ''} · $${total}` : '';
+    const lineas = items.map(([n, v]) => `• ${v.cant} × Combo ${n} ($${v.precio})`).join('\n');
+    const msg = piezas
+      ? `¡Hola! Quiero pedir:\n${lineas}\nTotal: $${total}\n\nMi dirección es: `
+      : '¡Hola! Quiero hacer un pedido 🍔';
+    btnPide.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+  }
+
+  $$('.btn-agregar').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const n = btn.dataset.nombre;
+      pedido[n] = pedido[n] || { cant: 0, precio: +btn.dataset.precio };
+      pedido[n].cant++;
+      actualizarPedido();
+      const txt = $('span', btn);
+      btn.classList.add('ok'); txt.textContent = `Agregado (${pedido[n].cant})`;
+      clearTimeout(btn._t);
+      btn._t = setTimeout(() => { btn.classList.remove('ok'); txt.textContent = 'Agregar'; }, 1400);
+      gsap.fromTo('.carrito-num', { scale: 1.6 }, { scale: 1, duration: .5, ease: 'back.out(3)' });
+    });
+  });
+  actualizarPedido();
+
+  /* -------------------------------------------------------
+     HEADER sólido fuera del hero
+     ------------------------------------------------------- */
+  const header = $('#header');
+  const pintarHeader = () => header.classList.toggle('solido', window.scrollY > window.innerHeight * 0.85);
+  window.addEventListener('scroll', pintarHeader, { passive: true });
+  pintarHeader();
+
+  /* -------------------------------------------------------
+     MARQUEE infinito: duplicamos el grupo y desplazamos -50%
+     ------------------------------------------------------- */
+  const pista = $('#marquee');
+  pista.appendChild(pista.firstElementChild.cloneNode(true));
+
+  /* -------------------------------------------------------
+     ANIMACIONES (con soporte para movimiento reducido)
+     ------------------------------------------------------- */
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    movimiento: '(prefers-reduced-motion: no-preference)',
+    reducido:   '(prefers-reduced-motion: reduce)',
+    movil:      '(max-width: 759px)'
+  }, ctx => {
+    const { movimiento, movil } = ctx.conditions;
+    const capas = $$('.capa');
+    const etiquetas = $$('.etiqueta');
+
+    /* ---------- Versión con movimiento reducido ---------- */
+    if (!movimiento) {
+      gsap.set('.linea > span', { yPercent: 0 });
+      // Despiece estático y legible, sin scrub
+      capas.forEach(c => gsap.set(c, { yPercent: -50, y: () => (+c.dataset.y * (movil ? .8 : 1)) * window.innerHeight / 100 }));
+      gsap.set(etiquetas, { opacity: 1 });
+      gsap.set('.cta', { backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--rojo-oscuro'), color: '#FFF6E6' });
+      $$('.combo, .revelar').forEach(el =>
+        gsap.from(el, { opacity: 0, duration: .6, scrollTrigger: { trigger: el, start: 'top 85%' } }));
+      return;
+    }
+
+    const k = movil ? 0.72 : 1; // intensidad del parallax en móvil
+
+    /* ---------- 1. HERO: revelación de abajo hacia arriba ---------- */
+    const intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    intro
+      .from('.hero-titulo .linea > span', { yPercent: 140, duration: 1.1, stagger: .14 })
+      .from('#heroBurger', { y: 120, scale: .7, rotate: -10, opacity: 0, duration: 1.2, ease: 'back.out(1.4)' }, '-=.75')
+      .from('.hero-pie > *', { y: 20, opacity: 0, duration: .6, stagger: .1 }, '-=.6')
+      .from('.header > *', { y: -20, opacity: 0, duration: .6, stagger: .1 }, '<');
+
+    gsap.to('.scroll-hint i', { scaleY: .3, duration: .9, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    // Parallax del hero: el título sube más rápido que la hamburguesa
+    gsap.to('.hero-titulo', {
+      yPercent: -35, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+    gsap.to('#heroBurger img', {
+      y: () => window.innerHeight * .35, scale: 1.08, ease: 'none',
+      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    /* ---------- 2. DESPIECE: la hamburguesa se desarma ---------- */
+    // Estado inicial: capas apiladas (armada). data-armado = % del ancho de la pila
+    const pila = $('#pila');
+    capas.forEach(c => gsap.set(c, { yPercent: -50, y: () => +c.dataset.armado / 100 * pila.offsetWidth }));
+    gsap.set(etiquetas, { opacity: 0, x: (i, el) => el.classList.contains('izq') && !movil ? 30 : -30 });
+    gsap.set('.anatomia-cabecera .linea > span', { yPercent: 140 });
+
+    const despiece = gsap.timeline({
+      defaults: { ease: 'power2.inOut' },
+      scrollTrigger: {
+        trigger: '.anatomia',
+        start: 'top top',
+        end: () => '+=' + window.innerHeight * (movil ? 2.2 : 2.8),
+        pin: '.anatomia-escena',
+        scrub: 1,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      }
+    });
+
+    despiece.to('.anatomia-cabecera .linea > span', { yPercent: 0, duration: .25, stagger: .06, ease: 'power3.out' }, 0);
+    // En escritorio el título se retira para dejar espacio a las etiquetas
+    if (!movil) despiece.to('.anatomia-cabecera .linea > span', { yPercent: -140, duration: .2, stagger: .04, ease: 'power2.in' }, .45);
+
+    // Cada capa viaja a su posición con su propia velocidad (data-speed) → efecto 3D
+    capas.forEach((c, i) => {
+      const vel = +c.dataset.speed;
+      const dur = 1 / vel;
+      despiece.to(c, {
+        y: () => +c.dataset.y * k * window.innerHeight / 100,
+        duration: dur
+      }, .1);
+      despiece.to($('.capa-img', c), {
+        rotationX: 18 * vel, rotationZ: +c.dataset.rot, scale: 0.94 + vel * .06,
+        duration: dur
+      }, .1);
+    });
+
+    // Etiquetas aparecen cuando su capa ya se separó
+    etiquetas.forEach((et, i) => {
+      despiece.to(et, { opacity: 1, x: 0, duration: .3, ease: 'power2.out' }, .55 + i * .08);
+    });
+
+    // Contador de capas
+    const cont = { v: 0 };
+    despiece.to(cont, {
+      v: 6, duration: .9, ease: 'none',
+      onUpdate: () => { $('#contador').textContent = String(Math.round(cont.v)).padStart(2, '0'); }
+    }, .1);
+
+    // Transición de color: rojo → rojo profundo mientras se desarma
+    despiece.to('.anatomia', { backgroundColor: '#A81810', duration: 1, ease: 'none' }, .1);
+    // Pausa final para leer
+    despiece.to({}, { duration: .5 });
+
+    // Flotación continua (independiente del scroll) para sensación de ingravidez
+    $$('.capa-img img').forEach((img, i) => {
+      gsap.to(img, {
+        y: gsap.utils.random(-8, 8) * k, rotation: gsap.utils.random(-2, 2),
+        duration: gsap.utils.random(2.2, 3.4), repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * .2
+      });
+    });
+
+    /* ---------- 3. MARQUEE infinito ---------- */
+    const loop = gsap.to(pista, { xPercent: -50, duration: movil ? 16 : 22, ease: 'none', repeat: -1 });
+    // Acelera según la velocidad del scroll
+    ScrollTrigger.create({
+      onUpdate: self => {
+        const v = Math.min(Math.abs(self.getVelocity()) / 600, 4);
+        gsap.to(loop, { timeScale: 1 + v, duration: .2, overwrite: true });
+        gsap.to(loop, { timeScale: 1, duration: 1, delay: .25 });
+      }
+    });
+
+    /* ---------- 4. MENÚ: títulos y tarjetas con fade-in ---------- */
+    $$('.revelar').forEach(t => {
+      gsap.from($$('.linea > span', t), {
+        yPercent: 140, duration: 1, stagger: .12, ease: 'power4.out',
+        scrollTrigger: { trigger: t, start: 'top 82%' }
+      });
+    });
+    gsap.from('.menu-cabecera p', {
+      y: 50, opacity: 0, duration: .9, ease: 'power3.out',
+      scrollTrigger: { trigger: '.menu-cabecera', start: 'top 80%' }
+    });
+    gsap.set('.combo', { opacity: 0 });
+    ScrollTrigger.batch('.combo', {
+      start: 'top 85%',
+      onEnter: batch => gsap.fromTo(batch,
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: .15, ease: 'power3.out', overwrite: true }),
+    });
+    // Parallax sutil de cada foto del menú
+    $$('.combo-foto img').forEach((img, i) => {
+      gsap.fromTo(img, { y: 30 * k * (i % 2 ? 1.4 : 1) }, {
+        y: -30 * k * (i % 2 ? 1.4 : 1), ease: 'none',
+        scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
+    /* ---------- 5. CTA: crema → rojo oscuro + pulso ---------- */
+    gsap.fromTo('.cta',
+      { backgroundColor: '#FFF6E6', color: '#141010' },
+      { backgroundColor: '#7A0F0B', color: '#FFF6E6', ease: 'none',
+        scrollTrigger: { trigger: '.cta', start: 'top 85%', end: 'top 20%', scrub: true } });
+    // Lo mismo para el fondo del body (por si hay rebote de scroll en iOS)
+    ScrollTrigger.create({
+      trigger: '.cta', start: 'top 20%',
+      onEnter: () => gsap.to('body', { backgroundColor: '#7A0F0B', duration: .3 }),
+      onLeaveBack: () => gsap.to('body', { backgroundColor: '#D7261E', duration: .3 })
+    });
+    gsap.from('#btnPide', {
+      y: 60, opacity: 0, duration: .9, ease: 'back.out(2)',
+      scrollTrigger: { trigger: '#btnPide', start: 'top 90%' }
+    });
+    gsap.to('#btnPide', { scale: 1.06, duration: .9, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+  });
+
+  /* -------------------------------------------------------
+     Recalcular posiciones cuando cargan las imágenes
+     ------------------------------------------------------- */
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+  $$('img').forEach(img => { if (!img.complete) img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true }); });
+})();
+</script>
+</body>
+</html>
