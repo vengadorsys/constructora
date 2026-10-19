@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smash 230° · Hamburguesas Smash Artesanales</title>
+<meta name="description" content="Smash burgers artesanales: carne 100% Angus aplastada a 230°, cheddar fundido y brioche dorado. Pide ahora y llega a tu puerta.">
+<meta name="theme-color" content="#D7261E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   1. THEMING — variables de identidad
+   ========================================================= */
+:root{
+  /* Paleta */
+  --rojo:        #D7261E;   /* principal: estimula el apetito */
+  --rojo-oscuro: #6E0B0B;   /* footer / CTA */
+  --mostaza:     #FFC72C;   /* acentos, etiquetas, botones */
+  --crema:       #FBF3E4;   /* fondos informativos */
+  --tinta:       #1A0F0A;   /* texto oscuro */
+  --blanco:      #FFFDF8;
+
+  /* Fondos por sección (el JS anima el body entre estos) */
+  --bg-hero:        var(--rojo);
+  --bg-ingredientes:var(--rojo);
+  --bg-menu:        var(--crema);
+  --bg-footer:      var(--rojo-oscuro);
+
+  /* Tipografía */
+  --f-titulo: 'Anton', 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --f-texto:  'Montserrat', 'Inter', system-ui, sans-serif;
+
+  /* Medidas de la escena */
+  --hw: min(78vw, 56svh, 560px);   /* ancho de la hamburguesa del hero */
+  --lw: min(24svh, 44vw, 250px);   /* ancho de cada ingrediente ya desarmado */
+  --gutter: clamp(16px, 4vw, 48px);
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg-hero);
+  color:var(--blanco);
+  font-family:var(--f-texto);
+  line-height:1.5;
+  overflow-x:clip;
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--mostaza);outline-offset:3px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* =========================================================
+   3. HEADER
+   ========================================================= */
+.header{
+  position:fixed;inset:0 0 auto 0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px var(--gutter);
+  transition:color .3s;
+}
+.logo{
+  font-family:var(--f-titulo);font-size:clamp(1.3rem,2.4vw,1.7rem);
+  letter-spacing:.02em;text-decoration:none;line-height:1;
+}
+.logo span{color:var(--mostaza)}
+.pedido{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--mostaza);color:var(--tinta);
+  font-weight:800;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;
+  padding:10px 16px;border-radius:999px;text-decoration:none;
+}
+.pedido b{
+  display:inline-grid;place-items:center;min-width:22px;height:22px;
+  background:var(--tinta);color:var(--mostaza);border-radius:999px;font-size:.75rem;
+}
+.header.on-light{color:var(--tinta)}
+.header.on-light .logo span{color:var(--rojo)}
+
+/* =========================================================
+   4. ESCENA: HERO + ANATOMÍA (misma hamburguesa)
+   ========================================================= */
+.escena{position:relative}
+.hero{
+  position:relative;height:100svh;min-height:560px;
+  display:grid;place-items:center;overflow:hidden;
+}
+/* Viñeta oscura que da profundidad cuando se desarma */
+.vineta{
+  position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse at center, transparent 30%, rgba(60,0,0,.55) 100%);
+}
+.hero-titulo{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:calc(var(--hw) * .6);
+  font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(3.6rem, 16.5vw, 15rem);line-height:.9;letter-spacing:-.005em;
+  text-align:center;pointer-events:none;
+}
+.hero-titulo .mask{display:block;overflow:hidden;padding:0 .04em}
+.hero-titulo .linea{display:block}
+.hero-titulo .l2{color:var(--mostaza)}
+.hero-burger-wrap{position:absolute;inset:0;z-index:2;pointer-events:none}
+.hero-burger{
+  position:absolute;inset:0;margin:auto;
+  width:var(--hw);
+  filter:drop-shadow(0 30px 40px rgba(60,0,0,.45));
+}
+.hero-meta{
+  position:absolute;left:0;right:0;bottom:clamp(18px,4svh,40px);z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.chip{
+  background:var(--mostaza);color:var(--tinta);
+  font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 14px;border-radius:999px;
+}
+.scroll-hint{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.85}
+
+/* ---------- Anatomía: modo estático (sin JS / movimiento reducido) ---------- */
+.anatomia{padding:72px var(--gutter) 96px;max-width:760px;margin:0 auto}
+.anat-head{margin-bottom:36px}
+.eyebrow{
+  display:inline-block;background:var(--mostaza);color:var(--tinta);
+  font-weight:800;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:6px 12px;border-radius:999px;
+}
+.anat-head h2{
+  font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2.2rem,6vw,4.2rem);line-height:.95;margin-top:12px;
+}
+.capas{list-style:none;display:grid;gap:18px}
+.capa{display:grid;grid-template-columns:38% 1fr;align-items:center;gap:20px}
+.capa .flota img{width:100%;filter:drop-shadow(0 18px 22px rgba(60,0,0,.35))}
+.etiqueta{display:flex;flex-direction:column;gap:2px}
+.etiqueta .num{font-family:var(--f-titulo);color:var(--mostaza);font-size:1rem;letter-spacing:.05em}
+.etiqueta strong{font-family:var(--f-titulo);font-weight:400;font-size:clamp(1.25rem,2.4vw,1.75rem);line-height:1;text-transform:uppercase}
+.etiqueta small{font-size:.85rem;font-weight:500;opacity:.9}
+
+/* ---------- Anatomía: modo animado (lo activa el JS) ---------- */
+.escena.is-animated .anatomia{
+  position:absolute;inset:0;z-index:3;padding:0;max-width:none;pointer-events:none;
+}
+.escena.is-animated .anat-head{
+  position:absolute;top:clamp(70px,11svh,110px);left:var(--gutter);margin:0;max-width:40vw;
+}
+.escena.is-animated .anat-head h2{font-size:clamp(1.6rem,3.6vw,3rem)}
+.escena.is-animated .capas{display:block}
+.escena.is-animated .capa{
+  position:absolute;left:50%;top:50%;width:0;height:0;display:block;
+}
+.escena.is-animated .capa .flota{
+  position:absolute;left:0;top:0;width:var(--hw); /* centrado con xPercent/yPercent en JS */
+}
+.escena.is-animated .etiqueta{
+  position:absolute;top:0; /* centrado vertical con yPercent en JS */
+  width:max-content;max-width:260px;opacity:0;
+}
+.escena.is-animated .etiqueta.der{left:calc(var(--lw) / 2 + 22px)}
+.escena.is-animated .etiqueta.izq{right:calc(var(--lw) / 2 + 22px);text-align:right;align-items:flex-end}
+.escena.is-animated .etiqueta::before{ /* línea guía hacia el ingrediente */
+  content:"";position:absolute;top:50%;width:14px;height:2px;background:var(--mostaza);
+}
+.escena.is-animated .etiqueta.der::before{left:-20px}
+.escena.is-animated .etiqueta.izq::before{right:-20px}
+/* Sonda invisible para que el JS lea --lw en píxeles */
+.probe-lw{position:absolute;width:var(--lw);height:0;visibility:hidden;pointer-events:none}
+
+/* =========================================================
+   5. MARQUEE
+   ========================================================= */
+/* el wrapper recorta las esquinas de la cinta inclinada (sin scroll horizontal) */
+.marquee-wrap{position:relative;z-index:4;overflow:hidden;padding:40px 0;margin:-40px 0}
+.marquee{
+  position:relative;z-index:4;background:var(--mostaza);color:var(--tinta);
+  overflow:hidden;padding:clamp(14px,2.2vw,24px) 0;
+  transform:rotate(-2deg) scale(1.04);
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+.marquee-track{display:flex;width:max-content;will-change:transform}
+.marquee-grupo{
+  display:flex;flex-shrink:0;white-space:nowrap;
+  font-family:var(--f-titulo);font-size:clamp(2rem,6vw,4.6rem);line-height:1;text-transform:uppercase;
+}
+.marquee-grupo span{padding-right:.35em}
+
+/* =========================================================
+   6. MENÚ
+   ========================================================= */
+.menu{color:var(--tinta);padding:clamp(96px,14vw,160px) var(--gutter) clamp(80px,10vw,140px)}
+.menu-head{text-align:center;max-width:640px;margin:0 auto clamp(40px,6vw,72px)}
+.menu-head .eyebrow{background:var(--rojo);color:var(--blanco)}
+.menu-head h2{
+  font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2.6rem,8vw,6rem);line-height:.92;margin-top:14px;
+}
+.menu-head p{margin-top:12px;font-weight:500;color:#5b4a3f}
+.cards{
+  display:grid;gap:clamp(48px,5vw,56px) clamp(24px,3vw,40px);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));
+  max-width:1180px;margin:0 auto;
+}
+.card{display:flex;flex-direction:column;text-align:center;align-items:center}
+.card-foto{position:relative;width:min(100%,340px);aspect-ratio:1}
+.card-foto::after{ /* sombra suave de "plato" sin bordes */
+  content:"";position:absolute;left:18%;right:18%;bottom:6%;height:9%;
+  background:radial-gradient(ellipse at center, rgba(90,40,10,.28), transparent 70%);z-index:0;
+}
+.card-foto img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card:hover .card-foto img{transform:translateY(-8px) rotate(-2deg) scale(1.03)}
+.card h3{
+  font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(1.8rem,3vw,2.3rem);line-height:1;margin-top:8px;
+}
+.card .gancho{font-weight:700;color:var(--rojo);font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.card .ingredientes{font-size:.92rem;font-weight:500;color:#5b4a3f;margin-top:10px;max-width:32ch}
+.card .incluye{font-size:.78rem;font-weight:600;color:#8a7466;margin-top:6px}
+.card-pie{display:flex;align-items:center;gap:18px;margin-top:18px}
+.precio{font-family:var(--f-titulo);font-size:2rem;line-height:1;color:var(--tinta)}
+.precio small{font-family:var(--f-texto);font-size:.75rem;font-weight:700;color:#8a7466;margin-left:2px}
+.btn-agregar{
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:800;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:12px 20px;border-radius:999px;
+  background:transparent;color:var(--tinta);box-shadow:inset 0 0 0 2px var(--tinta);
+  transition:background .25s,color .25s,box-shadow .25s,transform .15s;
+}
+.btn-agregar:hover{background:var(--mostaza);box-shadow:inset 0 0 0 2px var(--mostaza)}
+.btn-agregar:active{transform:scale(.96)}
+.btn-agregar.ok{background:var(--tinta);color:var(--mostaza)}
+
+/* =========================================================
+   7. CTA / FOOTER
+   ========================================================= */
+.cta{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:120px var(--gutter) 40px;color:var(--blanco);
+}
+.cta h2{
+  font-family:var(--f-titulo);font-weight:400;text-transform:uppercase;
+  font-size:clamp(3.6rem,15vw,13rem);line-height:.88;color:var(--mostaza);
+}
+.cta .sub{font-family:var(--f-titulo);text-transform:uppercase;font-size:clamp(1.5rem,4.4vw,3.4rem);line-height:1;margin-top:10px}
+.btn-pide{
+  display:inline-block;margin-top:clamp(36px,6vw,64px);
+  background:var(--mostaza);color:var(--tinta);text-decoration:none;
+  font-family:var(--f-titulo);font-size:clamp(2rem,6vw,4rem);line-height:1;letter-spacing:.02em;
+  padding:.45em 1.2em;border-radius:999px;
+  box-shadow:0 18px 50px rgba(255,199,44,.28);
+}
+.btn-pide:hover{background:var(--blanco)}
+.info{
+  display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));
+  width:min(100%,900px);margin-top:clamp(64px,10vw,110px);text-align:left;
+}
+.info h3{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mostaza);margin-bottom:6px}
+.info p,.info a{font-size:.95rem;font-weight:500}
+.legal{margin-top:56px;font-size:.75rem;opacity:.6}
+
+/* =========================================================
+   8. RESPONSIVE
+   ========================================================= */
+@media (max-width:900px) and (orientation:portrait){
+  .hero-titulo{gap:calc(var(--hw) * .95)}
+  :root{--hw:min(78vw, 46svh, 560px)}
+}
+@media (max-width:400px){
+  .escena.is-animated .etiqueta small{display:none}
+}
+@media (max-height:500px) and (orientation:landscape){
+  :root{--hw:min(60vw, 52svh, 560px)}
+  .hero{min-height:0}
+  .hero-titulo{font-size:clamp(2rem,7vw,3.4rem);gap:calc(var(--hw) * .92)}
+  .hero-meta{display:none}
+  .escena.is-animated .etiqueta small{display:none}
+  .escena.is-animated .anat-head h2{display:none}
+}
+@media (max-width:700px){
+  .escena.is-animated .anat-head{ /* en móvil va abajo para no chocar con el pan */
+    top:auto;bottom:16px;max-width:none;right:var(--gutter);
+    display:flex;align-items:center;gap:10px;
+  }
+  .escena.is-animated .anat-head h2{font-size:1.25rem;margin:0}
+  .escena.is-animated .anat-head h2 br{display:none}
+  .escena.is-animated .etiqueta{max-width:38vw}
+  .escena.is-animated .etiqueta.izq{ /* en móvil todas van a la derecha */
+    right:auto;left:calc(var(--lw) / 2 + 22px);text-align:left;align-items:flex-start;
+  }
+  .escena.is-animated .etiqueta.izq::before{right:auto;left:-20px}
+  .etiqueta strong{font-size:1.05rem}
+  .etiqueta small{font-size:.74rem;line-height:1.3}
+  .capa{grid-template-columns:42% 1fr}
+  .hero-titulo{gap:calc(var(--hw) * .95);font-size:clamp(3.2rem,17vw,6rem)}
+}
+</style>
+</head>
+
+<body>
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+<header class="header" id="header">
+  <!-- PERSONALIZAR: nombre del restaurante -->
+  <a href="#inicio" class="logo">SMASH<span>230°</span></a>
+  <a href="#pide" class="pedido">Mi pedido <b id="contador" aria-live="polite">0</b></a>
+</header>
+
+<main>
+<!-- =========================================================
+     ESCENA: HERO (hamburguesa armada) + ANATOMÍA (se desarma)
+     ========================================================= -->
+<section class="escena" id="inicio" aria-label="Portada y anatomía de la hamburguesa">
+  <div class="hero">
+    <div class="vineta"></div>
+    <h1 class="hero-titulo">
+      <span class="mask"><span class="linea l1">Puro sabor,</span></span>
+      <span class="mask"><span class="linea l2">cero reglas</span></span>
+    </h1>
+    <div class="hero-burger-wrap">
+      <img class="hero-burger" src="img/hero.webp" width="1000" height="952" fetchpriority="high"
+           srcset="img/hero-600.webp 600w, img/hero.webp 1000w" sizes="min(78vw, 56svh, 560px)"
+           alt="Hamburguesa doble smash con cheddar fundido, pepinillos, lechuga y pan brioche">
+    </div>
+    <div class="hero-meta">
+      <span class="chip">Smash burgers · 100% Angus</span>
+      <span class="scroll-hint">Desliza y desármala ↓</span>
+    </div>
+  </div>
+
+  <div class="anatomia">
+    <div class="anat-head">
+      <span class="eyebrow">Anatomía</span>
+      <h2>Capa por capa.<br> Cero relleno.</h2>
+    </div>
+    <ol class="capas">
+      <!-- Orden de arriba hacia abajo. data-* = posición armada / desarmada / velocidad -->
+      <li class="capa" data-arm="-0.30" data-des="-0.30" data-vel="0.55" data-rot="-6" data-z="6">
+        <div class="flota"><img decoding="async" src="img/pan-superior.webp" width="600" height="403" alt="Pan brioche superior dorado"></div>
+        <p class="etiqueta der"><span class="num">01</span><strong>Brioche dorado</strong><small>Tostado en mantequilla</small></p>
+      </li>
+      <li class="capa" data-arm="-0.10" data-des="-0.175" data-vel="0.8" data-rot="5" data-z="5" data-sa="0.8">
+        <div class="flota"><img decoding="async" src="img/tomate.webp" width="600" height="506" alt="Rebanadas de tomate fresco"></div>
+        <p class="etiqueta izq"><span class="num">02</span><strong>Tomate bola</strong><small>Rebanado al momento</small></p>
+      </li>
+      <li class="capa" data-arm="-0.16" data-des="-0.045" data-vel="0.68" data-rot="-4" data-z="4">
+        <div class="flota"><img decoding="async" src="img/lechuga.webp" width="600" height="400" alt="Hoja de lechuga fresca y crujiente"></div>
+        <p class="etiqueta der"><span class="num">03</span><strong>Lechuga crujiente</strong><small>Fría, fresca, truena</small></p>
+      </li>
+      <li class="capa" data-arm="0.02" data-des="0.075" data-vel="0.9" data-rot="3" data-z="3">
+        <div class="flota"><img decoding="async" src="img/cheddar.webp" width="600" height="353" alt="Queso cheddar fundido"></div>
+        <p class="etiqueta izq"><span class="num">04</span><strong>Cheddar fundido premium</strong><small>Se derrite sobre la carne</small></p>
+      </li>
+      <li class="capa" data-arm="0.12" data-des="0.185" data-vel="0.72" data-rot="-3" data-z="2">
+        <div class="flota"><img decoding="async" src="img/carne.webp" width="600" height="450" alt="Carne smash con costra dorada"></div>
+        <p class="etiqueta der"><span class="num">05</span><strong>Carne 100% Angus smash</strong><small>Aplastada a 230°. Costra crujiente</small></p>
+      </li>
+      <li class="capa" data-arm="0.33" data-des="0.30" data-vel="0.6" data-rot="4" data-z="1">
+        <div class="flota"><img decoding="async" src="img/pan-inferior.webp" width="600" height="288" alt="Base de pan brioche tostada"></div>
+        <p class="etiqueta izq"><span class="num">06</span><strong>Base brioche</strong><small>Sella todos los jugos</small></p>
+      </li>
+    </ol>
+    <div class="probe-lw" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     MARQUEE
+     ========================================================= -->
+<div class="marquee-wrap">
+<div class="marquee">
+  <p class="sr-only">Crujientes, jugosas, recién hechas.</p>
+  <div class="marquee-track" aria-hidden="true">
+    <div class="marquee-grupo"><span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span><span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span></div>
+    <div class="marquee-grupo"><span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span><span>Crujientes •</span><span>Jugosas •</span><span>Recién hechas •</span></div>
+  </div>
+</div>
+</div>
+
+<!-- =========================================================
+     MENÚ — 3 combos estrella (PERSONALIZAR nombres y precios)
+     ========================================================= -->
+<section class="menu" id="menu" data-bg="--bg-menu">
+  <div class="menu-head">
+    <span class="eyebrow">Combos estrella</span>
+    <h2>Los 3 que mandan</h2>
+    <p>Todos incluyen papas crujientes y bebida.</p>
+  </div>
+
+  <div class="cards">
+    <article class="card">
+      <div class="card-foto"><img src="img/clasica.webp" width="700" height="655" loading="lazy" alt="Hamburguesa Clásica Smash"></div>
+      <h3>Clásica Smash</h3>
+      <p class="gancho">La de siempre, sin piedad</p>
+      <p class="ingredientes">Carne Angus smash, cheddar fundido, pepinillos, tomate, lechuga, salsa de la casa</p>
+      <div class="card-pie">
+        <span class="precio">$149<small>MXN</small></span>
+        <button class="btn-agregar" data-item="Clásica Smash" data-precio="149">Agregar <span aria-hidden="true">+</span></button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-foto"><img src="img/bacon-bbq.webp" width="700" height="655" loading="lazy" alt="Hamburguesa Bacon BBQ"></div>
+      <h3>Bacon BBQ</h3>
+      <p class="gancho">Ahumada y pegajosa</p>
+      <p class="ingredientes">Carne Angus smash, tocino crujiente, cheddar fundido, BBQ ahumada, lechuga</p>
+      <div class="card-pie">
+        <span class="precio">$179<small>MXN</small></span>
+        <button class="btn-agregar" data-item="Bacon BBQ" data-precio="179">Agregar <span aria-hidden="true">+</span></button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-foto"><img src="img/pollo-crispy.webp" width="700" height="655" loading="lazy" alt="Hamburguesa de pollo crispy"></div>
+      <h3>Pollo Crispy</h3>
+      <p class="gancho">Truena en cada mordida</p>
+      <p class="ingredientes">Pechuga empanizada, cheddar fundido, tomate, lechuga, mayo chipotle</p>
+      <div class="card-pie">
+        <span class="precio">$159<small>MXN</small></span>
+        <button class="btn-agregar" data-item="Pollo Crispy" data-precio="159">Agregar <span aria-hidden="true">+</span></button>
+      </div>
+    </article>
+  </div>
+</section>
+</main>
+
+<!-- =========================================================
+     CTA / FOOTER (PERSONALIZAR dirección, horario y WhatsApp)
+     ========================================================= -->
+<footer class="cta" id="pide" data-bg="--bg-footer">
+  <h2>¿Babeando?</h2>
+  <p class="sub">Haz que llegue a tu puerta.</p>
+  <a class="btn-pide" id="btnPide" href="https://wa.me/5210000000000" target="_blank" rel="noopener">PIDE AHORA</a>
+
+  <div class="info">
+    <div><h3>Dónde</h3><p>Av. Ejemplo 230, Col. Centro<br>Tu Ciudad</p></div>
+    <div><h3>Horario</h3><p>Mar – Dom<br>13:00 – 23:00</p></div>
+    <div><h3>Cómo llegar</h3><a href="https://maps.google.com/?q=Av.+Ejemplo+230" target="_blank" rel="noopener">Abrir en Google Maps →</a></div>
+  </div>
+  <p class="legal">© <span id="anio">2026</span> Smash 230°. Imágenes de concepto.</p>
+</footer>
+
+<!-- =========================================================
+     GSAP + SCROLLTRIGGER
+     ========================================================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+/* ---------------------------------------------------------
+   PEDIDO: carrito mínimo → mensaje de WhatsApp
+   --------------------------------------------------------- */
+const WHATSAPP = '5210000000000';           // PERSONALIZAR: número con lada (52 + 1 + 10 dígitos)
+const pedido = [];
+const contador = document.getElementById('contador');
+const btnPide = document.getElementById('btnPide');
+document.getElementById('anio').textContent = new Date().getFullYear();
+
+function actualizarLinkPedido(){
+  let msg = '¡Hola! Quiero pedir';
+  if (pedido.length){
+    const cuenta = {};
+    pedido.forEach(p => cuenta[p.item] = (cuenta[p.item] || 0) + 1);
+    const total = pedido.reduce((s,p) => s + p.precio, 0);
+    msg += ':\n' + Object.entries(cuenta).map(([k,n]) => `• ${n} × Combo ${k}`).join('\n') + `\nTotal: $${total} MXN`;
+  } else {
+    msg += ' unas smash burgers 🍔';
+  }
+  btnPide.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+}
+actualizarLinkPedido();
+
+document.querySelectorAll('.btn-agregar').forEach(btn => {
+  btn.addEventListener('click', () => {
+    pedido.push({ item: btn.dataset.item, precio: Number(btn.dataset.precio) });
+    contador.textContent = pedido.length;
+    actualizarLinkPedido();
+    btn.classList.add('ok');
+    btn.firstChild.textContent = 'Agregado ';
+    clearTimeout(btn._t);
+    btn._t = setTimeout(() => { btn.classList.remove('ok'); btn.firstChild.textContent = 'Agregar '; }, 1400);
+    if (window.gsap) gsap.fromTo(contador, { scale: 1.6 }, { scale: 1, duration: .4, ease: 'back.out(3)' });
+  });
+});
+
+/* ---------------------------------------------------------
+   ANIMACIONES (solo si GSAP cargó; si no, la página se ve estática)
+   --------------------------------------------------------- */
+if (window.gsap && window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+
+  const root = getComputedStyle(document.documentElement);
+  const color = v => root.getPropertyValue(v).trim();
+  const escena = document.querySelector('.escena');
+  const heroImg = document.querySelector('.hero-burger');
+  const capas = gsap.utils.toArray('.capa');
+  const probe = document.querySelector('.probe-lw');
+
+  /* ---- 1. Revelación del título del hero (de abajo hacia arriba) ----
+     Se ejecuta una sola vez y anima .linea / .hero-burger-wrap / .hero-meta > *;
+     el scroll anima .mask / .hero-burger / .hero-meta, así nunca pelean. */
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){
+    gsap.from('.hero-titulo, .hero-burger-wrap, .hero-meta', { opacity: 0, duration: .6 });
+  } else {
+    gsap.timeline({ defaults: { ease: 'power4.out' } })
+      .from('.hero-titulo .linea', { yPercent: 110, duration: 1.1, stagger: .12 })
+      .from('.hero-burger-wrap', { y: 120, scale: .8, opacity: 0, duration: 1.2 }, '-=0.9')
+      .from('.hero-meta > *', { y: 20, opacity: 0, duration: .6, stagger: .1 }, '-=0.6');
+  }
+
+  const mm = gsap.matchMedia();
+
+  mm.add({
+    motion: '(prefers-reduced-motion: no-preference)',
+    reduce: '(prefers-reduced-motion: reduce)',
+    mobile: '(max-width: 700px)'
+  }, ctx => {
+    const { motion, mobile } = ctx.conditions;
+
+    /* ---- 2. Explosión de ingredientes (pin + scrub) ---- */
+    if (motion){
+      escena.classList.add('is-animated');
+
+      const hw = () => heroImg.offsetWidth;              // ancho hamburguesa armada
+      const lw = () => probe.offsetWidth;                // ancho de cada capa desarmada
+      const H  = () => window.innerHeight;
+      const mx = () => mobile ? -window.innerWidth * 0.17 : 0;   // en móvil se corre a la izquierda para dejar sitio al texto
+
+      // La hamburguesa del hero se encoge hasta este factor antes de desarmarse
+      const sArm = () => Math.min(1, lw() / hw() * 1.3);
+
+      gsap.set('.capa .flota', { xPercent: -50, yPercent: -50 });
+      gsap.set('.capa .etiqueta', { yPercent: -50 });
+
+      // Estado inicial: capas apiladas (ya encogidas) donde estará la hamburguesa, invisibles
+      capas.forEach(c => {
+        gsap.set(c, { zIndex: c.dataset.z, x: 0, y: () => parseFloat(c.dataset.arm) * hw() * sArm() });
+        gsap.set(c.querySelector('img'), { opacity: 0, scale: () => sArm() * parseFloat(c.dataset.sa || 1) });
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: escena, start: 'top top',
+          end: () => '+=' + H() * (mobile ? 2.2 : 2.6),
+          pin: true, scrub: .8, invalidateOnRefresh: true, anticipatePin: 1,
+          refreshPriority: 1   // el pin se calcula antes que los triggers de abajo, aunque matchMedia lo recree
+        }
+      });
+
+      // fromTo con immediateRender:false → no hereda el estado inicial de la intro de carga
+      const IR = { immediateRender: false };
+      tl.fromTo('.hero-titulo .mask', { yPercent: 0, opacity: 1 }, { ...IR, yPercent: -120, opacity: 0, duration: .25, stagger: .04, ease: 'power2.in' }, 0)
+        .to('.hero-meta', { opacity: 0, y: -24, duration: .12 }, 0)
+        .to('.vineta', { opacity: 1, duration: .5 }, 0)
+        .fromTo(heroImg, { scale: 1 }, { ...IR, scale: sArm, duration: .14, ease: 'power2.inOut' }, 0)
+        .to(capas.map(c => c.querySelector('img')), { opacity: 1, duration: .04 }, .14)
+        .fromTo(heroImg, { opacity: 1 }, { ...IR, opacity: 0, duration: .05 }, .16)
+        .fromTo('.anat-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .2 }, .25);
+
+      // Cada capa viaja con su propia velocidad (duración) → efecto 3D
+      capas.forEach((c, i) => {
+        const vel = parseFloat(c.dataset.vel);
+        const etq = c.querySelector('.etiqueta');
+        const lado = (!mobile && etq.classList.contains('izq')) ? 1 : -1;
+        tl.to(c, {
+            x: mx, y: () => parseFloat(c.dataset.des) * H(),
+            duration: vel, ease: 'power2.inOut'
+          }, .16)
+          .to(c.querySelector('img'), {
+            scale: () => lw() / hw(), rotation: c.dataset.rot,
+            duration: vel, ease: 'power2.inOut'
+          }, .16)
+          .fromTo(etq, { opacity: 0, x: 30 * lado * -1 }, { opacity: 1, x: 0, duration: .16, ease: 'power2.out' }, .16 + vel * .75);
+      });
+      tl.to({}, { duration: .3 }); // pausa con todo desarmado
+
+      // Flotación continua: cada ingrediente "respira" a su propio ritmo
+      gsap.utils.toArray('.capa .flota').forEach((f, i) => {
+        gsap.to(f, { y: (i % 2 ? 7 : -7), duration: 1.6 + i * .27, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      });
+
+      return () => escena.classList.remove('is-animated');
+    }
+  });
+
+  /* ---- 3. Marquee infinito (se acelera con la velocidad del scroll) ---- */
+  mm.add('(prefers-reduced-motion: no-preference)', () => {
+    const loop = gsap.to('.marquee-track', { xPercent: -50, duration: 22, ease: 'none', repeat: -1 });
+    ScrollTrigger.create({
+      trigger: '.marquee', start: 'top bottom', end: 'bottom top',
+      onUpdate: self => {
+        const v = Math.min(Math.abs(self.getVelocity()) / 400, 4);
+        gsap.to(loop, { timeScale: 1 + v, duration: .2, overwrite: true });
+        gsap.to(loop, { timeScale: 1, duration: 1, delay: .2 });
+      }
+    });
+
+    /* ---- 4. Tarjetas del menú: fade-in suave escalonado ---- */
+    gsap.set('.card', { opacity: 0, y: 60 });
+    ScrollTrigger.batch('.card', {
+      start: 'top 85%', once: true,
+      onEnter: b => gsap.to(b, { opacity: 1, y: 0, duration: 1, stagger: .15, ease: 'power3.out' })
+    });
+
+    /* ---- 5. Botón PIDE AHORA con pulso ---- */
+    gsap.to('.btn-pide', { scale: 1.07, duration: .75, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+    gsap.from('.cta h2, .cta .sub', {
+      y: 50, opacity: 0, duration: 1, stagger: .12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.cta', start: 'top 65%' }
+    });
+  });
+
+  /* ---- Header: cambia a texto oscuro sobre el fondo crema (después del pin) ---- */
+  ScrollTrigger.create({
+    trigger: '#menu', start: 'top 40px', end: 'bottom 40px',
+    toggleClass: { targets: '#header', className: 'on-light' }
+  });
+
+  /* ---- 6. Transiciones de color de fondo (rojo → crema → rojo oscuro) ---- */
+  // Se crean después del pin para que las posiciones sean correctas.
+  let previo = color('--bg-hero');
+  document.querySelectorAll('[data-bg]').forEach(sec => {
+    const destino = color(sec.dataset.bg);
+    gsap.fromTo(document.body, { backgroundColor: previo }, {
+      backgroundColor: destino, ease: 'none', immediateRender: false,
+      scrollTrigger: { trigger: sec, start: 'top 95%', end: 'top 50%', scrub: true }
+    });
+    previo = destino;
+  });
+
+  /* Recalcular cuando terminen de cargar imágenes y fuentes */
+  window.addEventListener('load', () => ScrollTrigger.refresh());
+  if (document.fonts) document.fonts.ready.then(() => ScrollTrigger.refresh());
+}
+</script>
+</body>
+</html>
